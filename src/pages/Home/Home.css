@@ -1,0 +1,17 @@
+.design-card-list {
+    z-index: 0;
+}
+
+.expanded-post-container {
+    position: fixed;
+    top: calc(5vh + 4rem);
+    width: 86vw;
+    height: calc(87vh - 4rem);
+    background-color: #fff;
+    z-index: 10;
+    border: 2px solid #fff;
+    border-top: none;
+    border-bottom: none;
+    transform: translateX(-7vw);
+    padding: 0 7vw;
+}

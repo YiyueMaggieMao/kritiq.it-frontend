@@ -1,0 +1,17 @@
+.critique-container {
+    margin-top: 3vh;
+    padding: 0 2vw;
+    display: flex;
+}
+
+.critique-profile {
+    min-width: 11vw;
+    height: 11vw;
+    border-radius: 5.5vw;
+    background-color: #c4c4c4;
+    margin-right: 2vw;
+}
+
+.critique-body {
+    font-size: 0.8rem;
+}

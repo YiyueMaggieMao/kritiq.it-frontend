@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.page-content {
+  height: 90vh;
+  font-family: 'Rubik', sans-serif;
+  padding: 0 2vw;
+  padding-top: 2vh;
+  overflow: hidden;
+}
+
+/* Styles for page header */
+.page-header {
+  display: flex;
+  padding-left: 5vw;
+  margin-bottom: 3vh;
+}
+
+.page-header-logo {
+  width: 85%;
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.page-header-logo span {
+  display: table-cell;
+  align-self: flex-end;
+}
+
+.page-header-profile {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  background-color: #c4c4c4;
+}
+
+.page-header-back {
+  height: 2.5rem;
+  justify-content: center;
+}
+
+.page-header-back div {
+  margin-top: 1rem;
+}
+
+/* Page generics: Page title */
+.page-title {
+  padding-left: 5vw;
+  height: 1.6rem;
+}
+
+.page-title-text {
+  font-size: 1.6rem;
+}
+
+.page-body {
+  padding: 0 5vw;
+  overflow: scroll;
+  height: calc(87vh - 4.1rem);
+}

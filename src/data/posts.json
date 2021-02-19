@@ -1,0 +1,36 @@
+[
+    {
+        "author": "Stanley Lee",
+        "body": "just made something in PhotoShop! Let me know what yall think! Gonna need feedback on many things",
+        "tags": ["typography", "colortheory", "whitespace"],
+        "comments": [
+            {
+                "author": "Jeffery Ha",
+                "body": "I think there's too much whitespace"
+            },
+            {
+                "author": "Emily Nguyen",
+                "body": "There is not enough spacing between the heading and the paragraphs"
+            },
+            {
+                "author": "Maggie Mao",
+                "body": "Make the post scrollable when there's too many comments"
+            }
+        ]
+    },
+    {
+        "author": "Jeffery Ha",
+        "body": "used Figma for the first time!",
+        "tags": ["figma", "colortheory", "whitespace"],
+        "comments": [
+            {
+                "author": "Henry Chan",
+                "body": "The color scheme looks a bit too bright for a sleep schedule app"
+            },
+            {
+                "author": "Joey Dang",
+                "body": "Use more rounded corners to make the design look modern"
+            }
+        ]
+    }
+]

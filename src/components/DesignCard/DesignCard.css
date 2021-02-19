@@ -1,0 +1,45 @@
+.design-card {
+    margin-top: 3vh;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.design-card-cover {
+    height: 45vw;
+    background-color: #c4c4c4;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.design-card-content {
+    padding: 1vh 2vw;
+}
+
+.design-card-content-top {
+    display: flex;
+}
+
+.design-card-profile {
+    min-width: 11vw;
+    min-height: 11vw;
+    border-radius: 5.5vw;
+    background-color: #c4c4c4;
+    margin-right: 2vw;
+}
+
+.design-card-body {
+    display: inline-block;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    max-height: 2rem;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.design-card-tags {
+    margin-top: 1vh;
+    line-height: 1.2rem;
+    max-height: 1.2rem;
+    overflow: hidden;
+}

@@ -1,0 +1,17 @@
+.bottom-nav {
+    height: calc(8vh - 2.5px);
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1px;
+    border-top: 1.5px solid #000;
+    z-index: 100;
+}
+
+.bottom-nav span {
+    padding: 1vh 0;
+}
+
+.bottom-nav span img {
+    width: 5vh;
+    height: 5vh;
+}
