@@ -1,0 +1,32 @@
+.expanded-image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 15;
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: translate(0, calc( -5vh - 4.1rem ));
+}
+
+.close-image-button {
+    color: #000;
+    position: absolute;
+    top: 5vh;
+    right: 5%;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #c4c4c4;
+    border-radius: 0.6rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.image-body {
+    position: absolute;
+    top: 10vh;
+    width: 90%;
+    margin-left: 5%;
+    height: 80vh;
+    background-color: #c4c4c4;
+}

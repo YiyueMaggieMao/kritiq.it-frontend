@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Critique from '../Critique/Critique';
+import ExpandedImageLayer from '../ExpandedImageLayer/ExpandedImageLayer';
 import './ExpandedPost.css';
 
 
 const ExpandedPost = (props) => {
     const {author, body, tags, comments} = props;
+    const [imageExpanded, setImageExpanded] = useState(false);
 
     /* Format the tags into a string */
     const getTagString = () => {
@@ -23,6 +25,21 @@ const ExpandedPost = (props) => {
         return <Critique author={comment.author} body={comment.body}/>
     })
 
+    /* Expands the image when clicked */
+    const expandImage = () => {
+        setImageExpanded(true);
+    }
+
+    /* Collapses the image when closed */
+    const collapseImage = () => {
+        setImageExpanded(false);
+    }
+
+    /* Renders the expanded image, if the image is currently expanded */
+    const getExpandedImageLayer = () => {
+        return imageExpanded ? <ExpandedImageLayer collapseImage={collapseImage}/> : <div></div>
+    }
+
     /* Return the content... Oh it's gonna be so long */
     return(
         <div className="expanded-post">
@@ -30,7 +47,7 @@ const ExpandedPost = (props) => {
             <div className="expanded-post-scrollable">
                 {/* Expanded design card */}
                 <div className="design-card">
-                    <div className="design-card-cover"></div>
+                    <div className="design-card-cover" onClick={expandImage}></div>
                     <div className="design-card-content">
 
                         {/* Author profile, author name, post body */}
@@ -55,6 +72,7 @@ const ExpandedPost = (props) => {
 
             {/* Add a comment (fixed at bottom) */}
             <input className="add-comment" placeholder="Add a comment"/>
+            {getExpandedImageLayer()}
         </div>
     );
 }
