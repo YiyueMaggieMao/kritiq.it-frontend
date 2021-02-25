@@ -30,7 +30,8 @@ const Home = () => {
 
     /* The list of design cards rendered from post data */
     const designCardList = postData.map((post, id) => {
-        return <DesignCard id={id} author={post.author} body={post.body} tags={post.tags} expandPost={expandPost}/>;
+        return <DesignCard id={id} author={post.author} authorProfile={post.authorProfile} 
+                body={post.body} tags={post.tags} expandPost={expandPost}/>;
     })
 
     /* The content of expanded post */

@@ -29,8 +29,8 @@
 .page-header-profile {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 1.25rem;
-  background-color: #c4c4c4;
+  background: url("./img/jeff.png");
+  background-size: cover;
 }
 
 .page-header-back {
@@ -53,7 +53,6 @@
 }
 
 .page-body {
-  padding: 0 5vw;
   overflow: scroll;
   height: calc(87vh - 4.1rem);
 }

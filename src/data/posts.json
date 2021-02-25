@@ -1,6 +1,7 @@
 [
     {
         "author": "Stanley Lee",
+        "authorProfile": "stanley",
         "body": "just made something in PhotoShop! Let me know what yall think! Gonna need feedback on many things",
         "tags": ["typography", "colortheory", "whitespace"],
         "comments": [
@@ -20,6 +21,7 @@
     },
     {
         "author": "Jeffery Ha",
+        "authorProfile": "jeff",
         "body": "used Figma for the first time!",
         "tags": ["figma", "colortheory", "whitespace"],
         "comments": [

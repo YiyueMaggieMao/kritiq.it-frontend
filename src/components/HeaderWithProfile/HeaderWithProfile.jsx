@@ -1,6 +1,6 @@
 import React from 'react';
 
-// No specific CSS for this file, check App.js for all header styles
+// No specific CSS for this file, check App.css for all header styles
 
 const HeaderWithProfile = () => {
     return (
