@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import HeaderWithProfile from '../../components/HeaderWithProfile/HeaderWithProfile';
 import DesignCard from '../../components/DesignCard/DesignCard';
 import ExpandedPost from '../../components/ExpandedPost/ExpandedPost';
+import Navbar from '../../components/Navbar/Navbar';
 import postData from '../../data/posts.json';
 
 import './Home.css';
@@ -47,15 +48,18 @@ const Home = () => {
     }
 
     return (
-        <div className="page-content">
-            <HeaderWithProfile/>
-            <div className="page-title">{titleContent()}</div>
-            <div className="page-body">
-                <div className="design-card-list">
-                    {designCardList}
-                    {getExpandedPostViewer()}
+        <div>
+            <div className="page-content">
+                <HeaderWithProfile/>
+                <div className="page-title">{titleContent()}</div>
+                <div className="page-body">
+                    <div className="design-card-list">
+                        {designCardList}
+                        {getExpandedPostViewer()}
+                    </div>
                 </div>
             </div>
+            <Navbar/>
         </div>
     )
 }

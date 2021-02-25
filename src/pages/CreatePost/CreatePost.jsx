@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import HeaderWithNav from '../../components/HeaderWithNav/HeaderWithNav';
+import Navbar from '../../components/Navbar/Navbar';
 
 import './CreatePost.css';
 
@@ -57,23 +58,26 @@ const CreatePost = () => {
 
     /* Renders the content */
     return (
-        <div className="page-content">
-            <HeaderWithNav/>
-            <div className="page-body">
-                <div className="create-post-select-top">
-                    <div class="create-post-select-title">What type of critique are you looking for?</div>
-                    <div class="create-post-options-wrapper">
-                        {critiqueTypeList}
+        <div>
+            <div className="page-content">
+                <HeaderWithNav/>
+                <div className="page-body">
+                    <div className="create-post-select-top">
+                        <div class="create-post-select-title">What type of critique are you looking for?</div>
+                        <div class="create-post-options-wrapper">
+                            {critiqueTypeList}
+                        </div>
                     </div>
-                </div>
-                <div className="create-post-select-bottom">
-                    <div class="create-post-select-title">Select tags</div>
-                    <div class="create-post-options-wrapper">
-                        {critiqueTagList}
+                    <div className="create-post-select-bottom">
+                        <div class="create-post-select-title">Select tags</div>
+                        <div class="create-post-options-wrapper">
+                            {critiqueTagList}
+                        </div>
                     </div>
+                    <button className="upload-button">Upload File</button>
                 </div>
-                <button className="upload-button">Upload File</button>
             </div>
+            <Navbar/>
         </div>
     )
 }

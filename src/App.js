@@ -21,7 +21,6 @@ function App() {
           <Route path="/home" component={Home}></Route>
           <Route path="/create-post" component={CreatePost}></Route>
         </Switch>
-        <Navbar/>
       </div>
     </Router>
   );
