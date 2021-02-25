@@ -6,6 +6,7 @@ import './ExpandedPost.css';
 
 const ExpandedPost = (props) => {
     const {author, body, tags, comments} = props;
+    const [currentComments, setCurrentComments] = useState(comments);
     const [imageExpanded, setImageExpanded] = useState(false);
 
     /* Format the tags into a string */
@@ -21,9 +22,22 @@ const ExpandedPost = (props) => {
     }
 
     /* Render a list of comments */
-    const commentList = comments.map((comment) => {
+    const commentList = currentComments.map((comment) => {
         return <Critique author={comment.author} body={comment.body}/>
     })
+
+    /* When enter key pressed, submit a new comment */
+    const addComment = (comment) => {
+        const addedComment = {"author": "Jeffery Ha", "body": comment}
+        setCurrentComments([...currentComments, addedComment]);
+    }
+    
+    /* Hanles the keyPress event on the comment input */
+    const handleCommentKeyPress = (e) => {
+        if(e.key === "Enter") {
+            addComment(e.target.value);
+        }
+    }
 
     /* Expands the image when clicked */
     const expandImage = () => {
@@ -71,7 +85,7 @@ const ExpandedPost = (props) => {
             </div>
 
             {/* Add a comment (fixed at bottom) */}
-            <input className="add-comment" placeholder="Add a comment"/>
+            <input className="add-comment" placeholder="Add a comment" onKeyPress={handleCommentKeyPress}/>
             {getExpandedImageLayer()}
         </div>
     );
