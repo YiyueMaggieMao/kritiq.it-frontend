@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Critique from '../Critique/Critique';
 import ExpandedImageLayer from '../ExpandedImageLayer/ExpandedImageLayer';
 
@@ -12,6 +12,8 @@ const ExpandedPost = (props) => {
     const {author, authorProfile, body, tags, comments} = props;
     const [currentComments, setCurrentComments] = useState(comments);
     const [imageExpanded, setImageExpanded] = useState(false);
+
+    const scrollSection = useRef(null);
 
     /* Returns the profile pic based on authorProfile */
     const getProfilePic = () => {
@@ -46,6 +48,7 @@ const ExpandedPost = (props) => {
         if(e.key === "Enter") {
             addComment(e.target.value);
             e.target.value = "";
+            scrollSection.current.scrollTo({top: 0, behavior:'smooth'});
         }
     }
 
@@ -68,7 +71,7 @@ const ExpandedPost = (props) => {
     return(
         <div className="expanded-post">
             {/* The scrollable section (post + comments)*/}
-            <div className="expanded-post-scrollable">
+            <div className="expanded-post-scrollable" ref={scrollSection}>
                 {/* Expanded design card */}
                 <div className="design-card">
                     <div className="design-card-cover" onClick={expandImage}></div>
