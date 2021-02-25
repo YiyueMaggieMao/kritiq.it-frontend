@@ -43,6 +43,14 @@
   width:300px;
 }
 
+/* Change the annoying blue background thing to pink when you autofill with Chrome */
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover, 
+.input-field:-webkit-autofill:focus, 
+.input-field:-webkit-autofill:active  {
+    -webkit-box-shadow:0 0 0 50px #fde8ef inset; /* Change the color to your own background color */
+}
+
 .login-button{
   margin-top: 10vh;
   font-size: 20px;
