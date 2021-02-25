@@ -41,6 +41,7 @@ const Home = () => {
         (<div className="expanded-post-container">
             <ExpandedPost 
                 author={postData[expandedPostId].author}
+                authorProfile={postData[expandedPostId].authorProfile}
                 body={postData[expandedPostId].body}
                 tags={postData[expandedPostId].tags}
                 comments={postData[expandedPostId].comments}

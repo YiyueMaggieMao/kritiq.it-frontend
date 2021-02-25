@@ -6,10 +6,9 @@ import jeff from '../../img/jeff.png';
 const DesginCard = (props) => {
     const {id, author, authorProfile, body, tags, expandPost} = props;
 
-    /* Returns the URL string that's passed into static CSS */
-    const getProfileStyle = () => {
-        const backgroundImg = authorProfile === "stanley" ? stanley : jeff;
-        return {background: {backgroundImg}};
+    /* Returns the profile pic based on authorProfile */
+    const getProfilePic = () => {
+        return authorProfile === "stanley" ? stanley : jeff;
     }
 
     /* When the design card is clicked, call the Home.jsx function to expand it */
@@ -37,7 +36,9 @@ const DesginCard = (props) => {
                 {/* Author profile, author name, post body */}
                 <div className="design-card-content-top">
                     <div className="design-card-profile-wrapper">
-                        <div className="design-card-profile" style={getProfileStyle()}></div>
+                        <div className="design-card-profile">
+                            <img src={getProfilePic()}/>
+                        </div>
                     </div>
                     <div>
                         <div className="design-card-author">{author}</div>

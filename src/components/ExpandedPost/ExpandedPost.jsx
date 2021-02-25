@@ -1,13 +1,22 @@
 import React, {useState} from 'react';
 import Critique from '../Critique/Critique';
 import ExpandedImageLayer from '../ExpandedImageLayer/ExpandedImageLayer';
+
+import stanley from '../../img/stanley.png';
+import jeff from '../../img/jeff.png';
+
 import './ExpandedPost.css';
 
 
 const ExpandedPost = (props) => {
-    const {author, body, tags, comments} = props;
+    const {author, authorProfile, body, tags, comments} = props;
     const [currentComments, setCurrentComments] = useState(comments);
     const [imageExpanded, setImageExpanded] = useState(false);
+
+    /* Returns the profile pic based on authorProfile */
+    const getProfilePic = () => {
+        return authorProfile === "stanley" ? stanley : jeff;
+    }
 
     /* Format the tags into a string */
     const getTagString = () => {
@@ -67,7 +76,9 @@ const ExpandedPost = (props) => {
                         {/* Author profile, author name, post body */}
                         <div className="design-card-content-top design-card-content-top-expanded">
                             <div className="design-card-profile-wrapper">
-                                <div className="design-card-profile"></div>
+                                <div className="design-card-profile">
+                                    <img src={getProfilePic()}/>
+                                </div>
                             </div>
                             <div>
                                 <div className="design-card-author">{author}</div>

@@ -22,9 +22,12 @@
 .design-card-profile {
     min-width: 11vw;
     min-height: 11vw;
-    border-radius: 5.5vw;
-    background-color: #c4c4c4;
     margin-right: 2vw;
+}
+
+.design-card-profile img {
+    width: 11vw;
+    height: 11vw;
 }
 
 .design-card-body {
