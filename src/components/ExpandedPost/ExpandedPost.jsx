@@ -38,13 +38,14 @@ const ExpandedPost = (props) => {
     /* When enter key pressed, submit a new comment */
     const addComment = (comment) => {
         const addedComment = {"author": "Jeffery Ha", "body": comment}
-        setCurrentComments([...currentComments, addedComment]);
+        setCurrentComments([addedComment, ...currentComments]);
     }
     
     /* Hanles the keyPress event on the comment input */
     const handleCommentKeyPress = (e) => {
         if(e.key === "Enter") {
             addComment(e.target.value);
+            e.target.value = "";
         }
     }
 
