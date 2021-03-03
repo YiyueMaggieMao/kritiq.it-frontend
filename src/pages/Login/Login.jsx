@@ -61,7 +61,7 @@ const Login = (props) => {
       <div className="facebook-login-container">
         <FacebookLogin
           appId="140376401289286"
-          autoLoad={false}
+          autoLoad={true}
           fields="name,picture"
           scope="public_profile,user_friends"
           callback={loginWithFacebook}
