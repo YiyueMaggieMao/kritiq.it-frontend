@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 // Pages
@@ -12,13 +13,14 @@ import Navbar from './components/Navbar/Navbar';
 import './App.css';
 
 function App() {
+  const [userData, setUserData] = useState({});
   return (
     <Router>
       <div className="App">
         <Switch>
           <Redirect from="/" to="/login" exact></Redirect>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/home" component={Home}></Route>
+          <Route path="/login" component={()=><Login setUserData={setUserData}/>}></Route>
+          <Route path="/home" component={()=><Home userData={userData}/>}></Route>
           <Route path="/create-post" component={CreatePost}></Route>
         </Switch>
       </div>

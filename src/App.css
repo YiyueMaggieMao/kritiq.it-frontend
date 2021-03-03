@@ -26,7 +26,16 @@
   align-self: flex-end;
 }
 
-.page-header-profile {
+.page-header-profile, .page-header-profile-picture,.page-header-profile-placeholder {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.page-header-profile-picture {
+  border-radius: 1.25rem;
+}
+
+.page-header-profile-placeholder {
   width: 2.5rem;
   height: 2.5rem;
   background: url("./img/jeff.png");

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { useHistory } from 'react-router-dom';
 
@@ -8,20 +8,21 @@ import passwordIcon from '../../img/Password.svg';
 
 import './Login.css';
 
-const Login = () => {
+const Login = (props) => {
+  const {setUserData} = props;
   let history = useHistory();
-  const [userData, setUserData] = useState({});
-
-  /* Callback for Facebook Login */
-  const loginWithFacebook = (response) => {
-    console.log(response);
-    setUserData(response);
-  }
 
   /* Redirects to home page upon successful login */
   const redirectToHome = () => {
     history.push("/home");
   };
+
+  /* Callback for Facebook Login */
+  const loginWithFacebook = (response) => {
+    console.log(response);
+    setUserData({"name": response.name, "picture": response.picture.data.url});
+    redirectToHome(); 
+  }
 
   /* Renders the actual content */
   return (

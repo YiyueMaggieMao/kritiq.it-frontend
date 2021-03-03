@@ -8,7 +8,8 @@ import postData from '../../data/posts.json';
 
 import './Home.css';
 
-const Home = () => {
+const Home = (props) => {
+    const {userData} = props; // Contains name and url to profile picture
     const [expandedPostId, setExpandedPostId] = useState(-1);
 
     /* Expands a post based on id */
@@ -52,7 +53,7 @@ const Home = () => {
     return (
         <div>
             <div className="page-content">
-                <HeaderWithProfile/>
+                <HeaderWithProfile profilePictureURL={userData? userData.picture: ""}/>
                 <div className="page-title">{titleContent()}</div>
                 <div className="page-body">
                     <div className="design-card-list">
