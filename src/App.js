@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 // Pages
 import Home from './pages/Home/Home';
 import Profile from './pages/Profile/Profile';
-// import EditProfile from './pages/EditProfile/EditProfile';
+import EditProfile from './pages/EditProfile/EditProfile';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
@@ -23,9 +23,9 @@ function App() {
           <Route path="/signup" component={()=><Signup setUserData={setUserData}/>}></Route>
           <Route path="/home" component={()=><Home userData={userData}/>}></Route>
           <Route path="/profile" component={()=><Profile userData={userData}/>}></Route>
-          {/* <Route path="/edit-profile" 
+          <Route path="/edit-profile" 
             component={()=><EditProfile userData={userData} setUserData={setUserData}/>}>
-          </Route> */}
+          </Route>
           <Route path="/create-post" component={CreatePost}></Route>
         </Switch>
       </div>

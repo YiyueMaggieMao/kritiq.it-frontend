@@ -11,6 +11,11 @@ const Profile = (props) => {
         history.push("/home");
     }
 
+    /* Redirects to edit page upon clicking edit */
+    const redirectToEdit = () => {
+        history.push("/edit-profile");
+    }
+
     /* Returns the bio, or the placeholder if the user hasn't set one up yet */
     const getUserBio = () => {
         return userData.bio? userData.bio : "This user hasn't set up a bio yet"
@@ -21,7 +26,7 @@ const Profile = (props) => {
             {/* Header to go home / edit */}
             <div class="page-header profile-page-header">
                 <div class="page-header-back page-header-left" onClick={redirectToHome}>x</div>
-                <div class="page-header-edit">Edit</div>
+                <div class="page-header-edit" onClick={redirectToEdit}>Edit</div>
             </div>
             <div className="user-info-view">
                 {/* Profile picture and name */}

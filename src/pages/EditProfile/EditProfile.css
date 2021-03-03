@@ -1,0 +1,48 @@
+.page-header-edit-pink {
+    color: #ED578E;
+}
+
+.user-info-edit {
+    padding: 0 5vw;
+}
+
+.large-profile-pic-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.large-profile-pic {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 4rem;
+    background-color: #CCCCCC;
+}
+
+/* First name, last name, bio */
+.user-bio tr td{
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.table-field-name-edit {
+    color: #6F6F6F;
+    padding-right: 5vw;
+}
+
+.table-field-value-edit {
+    color: #000;
+}
+
+.table-field-value-edit input, .table-field-value-edit input:active, .table-field-value-edit input:focus {
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+.table-field-value-edit textarea, .table-field-value-edit textarea:active, .table-field-value-edit textarea:focus {
+    width: 100%;
+    font-family: "Rubik";
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
