@@ -25,7 +25,9 @@ const Profile = (props) => {
         <div className="page-content">
             {/* Header to go home / edit */}
             <div class="page-header profile-page-header">
-                <div class="page-header-back page-header-left" onClick={redirectToHome}>x</div>
+                <div class="page-header-back page-header-left">
+                    <span  onClick={redirectToHome}>x</span>
+                </div>
                 <div class="page-header-edit" onClick={redirectToEdit}>Edit</div>
             </div>
             <div className="user-info-view">

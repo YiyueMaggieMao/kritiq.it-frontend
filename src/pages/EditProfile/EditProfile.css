@@ -18,7 +18,27 @@
     background-color: #CCCCCC;
 }
 
+.edit-icon-wrapper {
+    position: absolute;
+    top: calc(5vh + 9.7rem);
+    left: calc(50vw + 2.5rem);
+    z-index: 10;
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    border: 1px solid #CDCDCD;
+    border-radius: 13px;
+}
+
+.edit-icon-wrapper img {
+    padding: 4px;
+}
+
 /* First name, last name, bio */
+.user-bio div {
+    border-bottom: 1px solid #CDCDCD;
+}
+
 .user-bio tr td{
     padding-top: 1vh;
     padding-bottom: 1vh;
