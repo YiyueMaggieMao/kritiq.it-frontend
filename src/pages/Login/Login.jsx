@@ -17,6 +17,11 @@ const Login = (props) => {
     history.push("/home");
   };
 
+  /* Redirects to sign up upon clicking the sign up text */
+  const redirectToSignup = () => {
+    history.push("/signup");
+  }
+
   /* Callback for Facebook Login */
   const loginWithFacebook = (response) => {
     console.log(response);
@@ -45,7 +50,9 @@ const Login = (props) => {
         </div>
         <input className="login-button" type="submit" value="Login" />
       </form>
-      <p className="bottom-text">Are you new? <span className="create-account-text"><a>Create an Account</a></span></p>
+      <p className="bottom-text">
+        Are you new? <span className="create-account-text" onClick={redirectToSignup}><a>Create an Account</a></span>
+      </p>
       <div className="or-div">
         <span className="or-div-line"><hr /></span>
         <span className="or-div-text">Or</span>
@@ -54,7 +61,7 @@ const Login = (props) => {
       <div className="facebook-login-container">
         <FacebookLogin
           appId="140376401289286"
-          autoLoad={true}
+          autoLoad={false}
           fields="name,picture"
           scope="public_profile,user_friends"
           callback={loginWithFacebook}

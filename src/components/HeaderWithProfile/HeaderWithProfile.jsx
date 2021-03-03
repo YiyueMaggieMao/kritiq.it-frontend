@@ -8,14 +8,14 @@ const HeaderWithProfile = (props) => {
     /* Renders the  */
     const getHeaderProfileContent = () => {
         return profilePictureURL? 
-            <img className="page-header-profile-picture"src={profilePictureURL}/>:
-            <div class="page-header-profile-placeholder"/>;
+            <img className="page-header-profile-picture" src={profilePictureURL} alt="Profile Pic"/>:
+            <div className="page-header-profile-placeholder"/>;
     }
 
     return (
         <div className="page-header">
-            <div class="page-header-logo"><span>kritiq.it</span></div>
-            <div class="page-header-profile">
+            <div className="page-header-logo"><span>kritiq.it</span></div>
+            <div className="page-header-profile">
                 {getHeaderProfileContent()}
             </div>
         </div>

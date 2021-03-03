@@ -5,9 +5,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import Home from './pages/Home/Home';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Login from './pages/Login/Login';
-
-// Components
-import Navbar from './components/Navbar/Navbar';
+import Signup from './pages/Signup/Signup';
 
 // Style
 import './App.css';
@@ -20,6 +18,7 @@ function App() {
         <Switch>
           <Redirect from="/" to="/login" exact></Redirect>
           <Route path="/login" component={()=><Login setUserData={setUserData}/>}></Route>
+          <Route path="/signup" component={()=><Signup setUserData={setUserData}/>}></Route>
           <Route path="/home" component={()=><Home userData={userData}/>}></Route>
           <Route path="/create-post" component={CreatePost}></Route>
         </Switch>
