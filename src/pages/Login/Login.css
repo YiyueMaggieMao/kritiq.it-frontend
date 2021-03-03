@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 .login-form{
-  margin: 10vh 0 0 5vw;
+  margin: 8vh 0 0 5vw;
   justify-content: center;
   align-items: center;
   color: #787878;
@@ -52,7 +52,7 @@
 }
 
 .login-button{
-  margin-top: 10vh;
+  margin-top: 8vh;
   font-size: 20px;
   width: 90vw;
   height: 46px;
@@ -63,12 +63,46 @@
   border: none;
   }
 
-.bottom-text{
-    margin-bottom: 10vh;
+.bottom-text {
     text-align: center;
-  }
+}
 
 .create-account-text{
   color: #ED578E;
   font-size: 16px;
+}
+
+.or-div {
+  color: #ACACAC;
+  margin: 2vh 0;
+  padding-left: 5vw;
+  width: 90vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.or-div-line {
+  padding-top: 0.25rem;
+  width: 40vw;
+}
+
+.or-div-text {
+  margin: 0 5px;
+}
+
+.facebook-login-container {
+  padding-left: 5vw;
+  width: 90vw;
+}
+
+.facebook-login-container .kep-login-facebook.metro {
+  width: 90vw;
+  height: 46px;
+  border-radius: 10px;
+  background-color: #3B76F5;
+  font-family: "Rubik";
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: none;
+  padding: calc(.34435vw + 9.38843px) calc(.34435vw + 18.38843px)
 }

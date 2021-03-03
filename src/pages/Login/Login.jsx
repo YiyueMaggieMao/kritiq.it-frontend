@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
+import FacebookLogin from 'react-facebook-login';
+import { useHistory } from 'react-router-dom';
 
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import usernameIcon from '../../img/Username.svg';
@@ -9,34 +10,59 @@ import './Login.css';
 
 const Login = () => {
   let history = useHistory();
+  const [userData, setUserData] = useState({});
 
+  /* Callback for Facebook Login */
+  const loginWithFacebook = (response) => {
+    console.log(response);
+    setUserData(response);
+  }
+
+  /* Redirects to home page upon successful login */
   const redirectToHome = () => {
-      history.push("/home");
+    history.push("/home");
   };
 
+  /* Renders the actual content */
   return (
-        <div className="login">
-          <LoginHeader/>
-          <form className="login-form" onSubmit={redirectToHome}>
-            <div className = "label-input">
-              <label>Username</label>
-              <div className="icon-input-container">
-                <img className= "icon" height="16px"src={usernameIcon}/>
-                <input className="input-field"type="text" name="username" required/>
-              </div>
-            </div>
-            <div className = "label-input">
-              <label>Password</label>
-              <div className="icon-input-container">
-                <img className="icon" height="20px" src={passwordIcon}/>
-                <input className="input-field" type="password" name="password" required/>
-              </div>
-            </div>
-            <input className = "login-button" type="submit" value="Login" />
-          </form>
-          <p className="bottom-text">Are you new? <span className="create-account-text"><a>Create an Account</a></span></p>
+    <div className="login">
+      <LoginHeader />
+      <form className="login-form" onSubmit={redirectToHome}>
+        <div className="label-input">
+          <label>Username</label>
+          <div className="icon-input-container">
+            <img className="icon" height="16px" src={usernameIcon} />
+            <input className="input-field" type="text" name="username" required />
+          </div>
         </div>
-    )
+        <div className="label-input">
+          <label>Password</label>
+          <div className="icon-input-container">
+            <img className="icon" height="20px" src={passwordIcon} />
+            <input className="input-field" type="password" name="password" required />
+          </div>
+        </div>
+        <input className="login-button" type="submit" value="Login" />
+      </form>
+      <p className="bottom-text">Are you new? <span className="create-account-text"><a>Create an Account</a></span></p>
+      <div className="or-div">
+        <span className="or-div-line"><hr /></span>
+        <span className="or-div-text">Or</span>
+        <span className="or-div-line"><hr /></span>
+      </div>
+      <div className="facebook-login-container">
+        <FacebookLogin
+          appId="140376401289286"
+          autoLoad={true}
+          fields="name,picture"
+          scope="public_profile,user_friends"
+          callback={loginWithFacebook}
+          type="continue_with"
+          icon="fa-facebook"
+        />
+      </div>
+    </div>
+  )
 }
 
 export default Login;
