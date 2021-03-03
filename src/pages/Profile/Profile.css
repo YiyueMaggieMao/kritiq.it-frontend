@@ -1,0 +1,46 @@
+.profile-page-header {
+    color: #6c6c6c;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+}
+
+.user-info-view {
+    padding: 0 5vw;
+}
+
+.user-name-and-picture-container {
+    display: flex;
+    padding-bottom: 2vh;
+    border-bottom: 1px solid #ECECEC;
+}
+
+.large-profile-pic-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.medium-profile-pic {
+    background-color: #CCCCCC;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+}
+
+.user-name-large-font {
+    font-size: 2rem;
+    padding: 1rem 0 1rem 5vw;
+}
+
+.user-bio {
+    margin-top: 2vh;
+    font-size: 1.1rem;
+}
+
+.table-field-name {
+    color: #000;
+    min-width: 15vw;
+}
+
+.table-field-value {
+    color: #595858;
+}

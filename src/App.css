@@ -26,6 +26,10 @@
   align-self: flex-end;
 }
 
+.page-header-left {
+  width: 85%;
+}
+
 .page-header-profile, .page-header-profile-picture,.page-header-profile-placeholder {
   width: 2.5rem;
   height: 2.5rem;
@@ -33,6 +37,7 @@
 
 .page-header-profile-picture {
   border-radius: 1.25rem;
+  background-color: #CCCCCC;
 }
 
 .page-header-profile-placeholder {

@@ -50,10 +50,13 @@ const Home = (props) => {
         </div>)
     }
 
+    /* Returns home page content */
     return (
         <div>
             <div className="page-content">
-                <HeaderWithProfile profilePictureURL={userData? userData.picture: ""}/>
+                <HeaderWithProfile
+                    profilePictureURL={userData? userData.picture: ""}
+                />
                 <div className="page-title">{titleContent()}</div>
                 <div className="page-body">
                     <div className="design-card-list">

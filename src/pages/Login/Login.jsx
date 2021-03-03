@@ -62,7 +62,7 @@ const Login = (props) => {
         <FacebookLogin
           appId="140376401289286"
           autoLoad={true}
-          fields="name,picture"
+          fields="name,picture.type(large)"
           scope="public_profile,user_friends"
           callback={loginWithFacebook}
           type="continue_with"
