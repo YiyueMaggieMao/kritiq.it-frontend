@@ -1,20 +1,31 @@
-import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './EditProfile.css';
+import editIcon from '../../img/edit.png';
 
 const EditProfile = (props) => {
-    const {userData, setUserData} = props;
+    const { userData, setUserData } = props;
     const history = useHistory();
 
-    const[saveButtonClassName, setSaveButtonClassName] = useState("page-header-edit");
-    
+    const [saveButtonClassName, setSaveButtonClassName] = useState("page-header-edit");
+
     /* 
      * Splits user's name into first and last
      * Returns array with format [firstName, lastName]
      */
     const getFirstAndLastName = () => {
+        // If user hasn't set a name yet, return an empty array 
+        if(!userData.name){
+            return ["",""];
+        }
+        // Otherwise, split the name by the last space index
         const lastSpaceIndex = userData.name.lastIndexOf(' ');
-        const firstName = userData.name.substring(0,lastSpaceIndex);
+        // If no space, return the whole name as first name and nothing as last
+        if(lastSpaceIndex === -1) {
+            return [userData.name, ""];
+        }
+        // If a space is present, return first and last name
+        const firstName = userData.name.substring(0, lastSpaceIndex);
         const lastName = userData.name.substring(lastSpaceIndex + 1);
         return [firstName, lastName];
     }
@@ -23,13 +34,22 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState(getFirstAndLastName()[1]);
     const [bio, setBio] = useState(userData.bio);
 
+    /* Renders a placeholder div if the user hasn't set up a profile, 
+     * and the actual profile picture if they did
+     */
+    const getProfilePic = () => {
+        return userData.picture?
+        <img className="large-profile-pic" src={userData.picture}/>:
+        <div className="large-profile-pic"></div>;
+    }
+
     /*
      * Attempts changing the style of the save button
      * Only calls the set method if the button isn't already pink
      * In order to save run time
      */
     const changeButtonStyle = () => {
-        if(saveButtonClassName === "page-header-edit"){
+        if (saveButtonClassName === "page-header-edit") {
             setSaveButtonClassName("page-header-edit page-header-edit-pink")
         }
     }
@@ -60,7 +80,7 @@ const EditProfile = (props) => {
     /* Saves info, then redirects to profile */
     const saveAndRedirectToProfile = () => {
         const name = firstName + " " + lastName;
-        setUserData({name: name, picture: userData.picture, bio: bio});
+        setUserData({ name: name, picture: userData.picture, bio: bio });
         redirectToProfile();
     }
 
@@ -68,32 +88,41 @@ const EditProfile = (props) => {
     return (
         <div className="page-content">
             <div className="page-header profile-page-header">
-                <div className="page-header-back page-header-left" onClick={redirectToProfile}>x</div>
+                <div className="page-header-back page-header-left">
+                    <span onClick={redirectToProfile}>x</span>
+                </div>
                 <div className={saveButtonClassName} onClick={saveAndRedirectToProfile}>Save</div>
             </div>
             <div className="user-info-edit">
                 <div className="large-profile-pic-wrapper">
-                    <img className="large-profile-pic" src={userData.picture}/>
+                    {getProfilePic()}
+                    <span className="edit-icon-wrapper"><img src={editIcon} /></span>
                 </div>
                 <table className="user-bio">
-                    <tr>
-                        <td className="table-field-name-edit">First Name</td>
-                        <td className="table-field-value-edit">
-                            <input defaultValue={firstName} onChange={updateFirstName}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="table-field-name-edit">Last Name</td>
-                        <td className="table-field-value-edit">
-                            <input defaultValue={lastName} onChange={updateLastName}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="table-field-name-edit">Bio</td>
-                        <td className="table-field-value-edit">
-                            <textarea defaultValue={bio} onChange={updateBio}/>
-                        </td>
-                    </tr>
+                    <div>
+                        <tr>
+                            <td className="table-field-name-edit">First Name</td>
+                            <td className="table-field-value-edit">
+                                <input defaultValue={firstName} onChange={updateFirstName} />
+                            </td>
+                        </tr>
+                    </div>
+                    <div>
+                        <tr>
+                            <td className="table-field-name-edit">Last Name</td>
+                            <td className="table-field-value-edit">
+                                <input defaultValue={lastName} onChange={updateLastName} />
+                            </td>
+                        </tr>
+                    </div>
+                    <div>
+                        <tr>
+                            <td className="table-field-name-edit">Bio</td>
+                            <td className="table-field-value-edit">
+                                <textarea defaultValue={bio} onChange={updateBio} />
+                            </td>
+                        </tr>
+                    </div>
                 </table>
             </div>
         </div>
