@@ -9,7 +9,7 @@ import './ExpandedPost.css';
 
 
 const ExpandedPost = (props) => {
-    const {author, authorProfile, body, tags, comments} = props;
+    const {userData, postId, author, authorProfile, body, tags, comments, setPostData} = props;
     const [currentComments, setCurrentComments] = useState(comments);
     const [imageExpanded, setImageExpanded] = useState(false);
 
@@ -34,12 +34,13 @@ const ExpandedPost = (props) => {
 
     /* Render a list of comments */
     const commentList = currentComments.map((comment) => {
-        return <Critique author={comment.author} body={comment.body}/>
+        const authorPicture = comment.authorPicture ? comment.authorPicture : "";
+        return <Critique author={comment.author} authorPicture={authorPicture} body={comment.body}/>
     })
 
     /* When enter key pressed, submit a new comment */
     const addComment = (comment) => {
-        const addedComment = {"author": "Jeffery Ha", "body": comment}
+        const addedComment = {"author": userData.name, "authorPicture":userData.picture, "body": comment}
         setCurrentComments([addedComment, ...currentComments]);
     }
     

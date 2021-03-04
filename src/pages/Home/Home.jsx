@@ -4,12 +4,11 @@ import HeaderWithProfile from '../../components/HeaderWithProfile/HeaderWithProf
 import DesignCard from '../../components/DesignCard/DesignCard';
 import ExpandedPost from '../../components/ExpandedPost/ExpandedPost';
 import Navbar from '../../components/Navbar/Navbar';
-import postData from '../../data/posts.json';
 
 import './Home.css';
 
 const Home = (props) => {
-    const {userData} = props; // Contains name and url to profile picture
+    const {userData, postData, setPostData} = props; // Contains name and url to profile picture
     const [expandedPostId, setExpandedPostId] = useState(-1);
 
     /* Expands a post based on id */
@@ -41,11 +40,14 @@ const Home = (props) => {
         (<div></div>): 
         (<div className="expanded-post-container">
             <ExpandedPost 
+                userData={userData}
+                postId={expandedPostId}
                 author={postData[expandedPostId].author}
                 authorProfile={postData[expandedPostId].authorProfile}
                 body={postData[expandedPostId].body}
                 tags={postData[expandedPostId].tags}
                 comments={postData[expandedPostId].comments}
+                setPostData={setPostData}
             />
         </div>)
     }

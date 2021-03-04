@@ -9,11 +9,15 @@ import CreatePost from './pages/CreatePost/CreatePost';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 
+// Data
+import posts from './data/posts.json';
+
 // Style
 import './App.css';
 
 function App() {
   const [userData, setUserData] = useState({});
+  const [postData, setPostData] = useState(posts);
   return (
     <Router>
       <div className="App">
@@ -21,7 +25,9 @@ function App() {
           <Redirect from="/" to="/login" exact></Redirect>
           <Route path="/login" component={()=><Login setUserData={setUserData}/>}></Route>
           <Route path="/signup" component={()=><Signup setUserData={setUserData}/>}></Route>
-          <Route path="/home" component={()=><Home userData={userData}/>}></Route>
+          <Route path="/home" 
+            component={()=><Home userData={userData} postData={postData} setPostData={setPostData}/>}>
+          </Route>
           <Route path="/profile" component={()=><Profile userData={userData}/>}></Route>
           <Route path="/edit-profile" 
             component={()=><EditProfile userData={userData} setUserData={setUserData}/>}>
