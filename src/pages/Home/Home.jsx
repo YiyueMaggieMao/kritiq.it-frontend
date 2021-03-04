@@ -5,10 +5,13 @@ import DesignCard from '../../components/DesignCard/DesignCard';
 import ExpandedPost from '../../components/ExpandedPost/ExpandedPost';
 import Navbar from '../../components/Navbar/Navbar';
 
+import posts from '../../data/posts.json';
+
 import './Home.css';
 
 const Home = (props) => {
-    const {userData, postData, setPostData} = props; // Contains name and url to profile picture
+    const {userData} = props; // Contains name and url to profile picture
+    const [postData, setPostData] = useState(posts);
     const [expandedPostId, setExpandedPostId] = useState(-1);
 
     /* Expands a post based on id */
@@ -47,7 +50,9 @@ const Home = (props) => {
                 body={postData[expandedPostId].body}
                 tags={postData[expandedPostId].tags}
                 comments={postData[expandedPostId].comments}
+                postData={postData}
                 setPostData={setPostData}
+                setExpandedPostId={setExpandedPostId}
             />
         </div>)
     }

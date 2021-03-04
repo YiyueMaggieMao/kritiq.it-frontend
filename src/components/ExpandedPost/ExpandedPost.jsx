@@ -9,7 +9,8 @@ import './ExpandedPost.css';
 
 
 const ExpandedPost = (props) => {
-    const {userData, postId, author, authorProfile, body, tags, comments, setPostData} = props;
+    const {userData, postId, author, authorProfile, body, tags, comments, 
+           postData, setPostData, setExpandedPostId} = props;
     const [currentComments, setCurrentComments] = useState(comments);
     const [imageExpanded, setImageExpanded] = useState(false);
 
@@ -38,16 +39,43 @@ const ExpandedPost = (props) => {
         return <Critique author={comment.author} authorPicture={authorPicture} body={comment.body}/>
     })
 
+    /* Returns a placeholder name if the user is unnamed, or the username if they have one */
+    const getAuthorName = () => {
+        return userData.name? userData.name : "Unnamed User";
+    }
+
     /* When enter key pressed, submit a new comment */
-    const addComment = (comment) => {
-        const addedComment = {"author": userData.name, "authorPicture":userData.picture, "body": comment}
-        setCurrentComments([addedComment, ...currentComments]);
+    const addComment = (comment, postId) => {
+        const addedComment = {"author": getAuthorName(), "authorPicture":userData.picture, "body": comment}
+        const updatedPostData = [];
+        const numPosts = postData.length;
+        // Updates the post data with the new comment
+        let currId;
+        console.log("postId: " + postId);
+        for(currId = 0; currId < numPosts; currId++) {
+            if(currId !== postId) {
+                updatedPostData.push(postData[currId]);
+            } else { // Update the specific post
+                const postToUpdate = postData[currId];
+                const updatedComments = [addedComment, ...postToUpdate.comments];
+                setCurrentComments(updatedComments);
+                const updatedPost = {
+                    "author": postToUpdate.author,
+                    "authorProfile": postToUpdate.author,
+                    "body": postToUpdate.body,
+                    "tags": postToUpdate.tags,
+                    "comments": updatedComments
+                };
+                updatedPostData.push(updatedPost);
+            }
+        }
+        setPostData(updatedPostData);
     }
     
     /* Hanles the keyPress event on the comment input */
     const handleCommentKeyPress = (e) => {
         if(e.key === "Enter") {
-            addComment(e.target.value);
+            addComment(e.target.value, postId);
             e.target.value = "";
             scrollSection.current.scrollTo({top: 0, behavior:'smooth'});
         }
