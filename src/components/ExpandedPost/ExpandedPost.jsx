@@ -51,7 +51,6 @@ const ExpandedPost = (props) => {
         const numPosts = postData.length;
         // Updates the post data with the new comment
         let currId;
-        console.log("postId: " + postId);
         for(currId = 0; currId < numPosts; currId++) {
             if(currId !== postId) {
                 updatedPostData.push(postData[currId]);
@@ -61,7 +60,7 @@ const ExpandedPost = (props) => {
                 setCurrentComments(updatedComments);
                 const updatedPost = {
                     "author": postToUpdate.author,
-                    "authorProfile": postToUpdate.author,
+                    "authorProfile": postToUpdate.authorProfile,
                     "body": postToUpdate.body,
                     "tags": postToUpdate.tags,
                     "comments": updatedComments
