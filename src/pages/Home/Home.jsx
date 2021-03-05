@@ -93,10 +93,10 @@ const Home = (props) => {
     /* The list of design cards rendered from post data */
     const designCardList = postData.map((post) => {
         const showing = filteredpostData.some((data) => {
-            return data.id === post.id;
+            return data.postId === post.postId;
         })
         if(!showing) {return <div></div>;}
-        return <DesignCard id={post.id} author={post.author} authorProfile={post.authorProfile} 
+        return <DesignCard id={post.postId} author={post.author} authorProfile={post.authorProfile} 
                 body={post.body} tags={post.tags} expandPost={expandPost}/>;
     })
 

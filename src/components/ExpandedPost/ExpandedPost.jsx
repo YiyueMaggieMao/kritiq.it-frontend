@@ -59,6 +59,7 @@ const ExpandedPost = (props) => {
                 const updatedComments = [addedComment, ...postToUpdate.comments];
                 setCurrentComments(updatedComments);
                 const updatedPost = {
+                    "postId": postToUpdate.postId,
                     "author": postToUpdate.author,
                     "authorProfile": postToUpdate.authorProfile,
                     "body": postToUpdate.body,

@@ -40,7 +40,7 @@ const EditProfile = (props) => {
     const getProfilePic = () => {
         return userData.picture?
         <img className="large-profile-pic" src={userData.picture}/>:
-        <div className="large-profile-pic"></div>;
+        <div className="large-profile-pic large-profile-pic-div"></div>;
     }
 
     /*

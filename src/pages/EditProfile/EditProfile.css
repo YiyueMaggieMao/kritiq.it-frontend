@@ -9,6 +9,7 @@
 .large-profile-pic-wrapper {
     width: 100%;
     text-align: center;
+    justify-content: center;
 }
 
 .large-profile-pic {
@@ -16,6 +17,11 @@
     height: 8rem;
     border-radius: 4rem;
     background-color: #CCCCCC;
+}
+
+.large-profile-pic-div {
+    position: relative;
+    left: calc(43vw - 4rem);
 }
 
 .edit-icon-wrapper {
