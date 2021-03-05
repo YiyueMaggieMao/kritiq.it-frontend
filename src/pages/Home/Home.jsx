@@ -36,6 +36,7 @@ const Home = (props) => {
         if(e.key === "Enter"){
             setSearchHistory([e.target.value, ...searchHistory]);
             e.target.value="";
+            setSearching(false);
         }
     }
 
@@ -78,7 +79,8 @@ const Home = (props) => {
     const getSearchBody = () => {
         return searching ? 
         <SearchBody
-            setFilters ={setFilters}
+            filters={filters}
+            setFilters={setFilters}
             searchHistory={searchHistory}
         />: 
         <div></div>

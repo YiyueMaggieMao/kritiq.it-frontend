@@ -6,11 +6,40 @@
     height: calc(85vh - 4rem);
 }
 
-#recent-searches-title {
+.search-body-title {
     color: #969696;
     font-weight: 500;
 }
 
 #recent-searches-content div {
     margin-top: 1vh;
+}
+
+.filter-header {
+    margin-top: 4vh;
+    display: flex;
+}
+
+.filter-header div {
+    margin-right: 5vw;
+}
+
+.backdrop-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(5vw, calc(-5vh - 4rem));
+    width: 100vw;
+    height: 100vh;
+    z-index: 12;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#search-popup {
+    background-color: red;
+    z-index: 15;
+    position: absolute;
+    top: 10vh;
+    width: 85vw;
+    height: 50vh;
 }
