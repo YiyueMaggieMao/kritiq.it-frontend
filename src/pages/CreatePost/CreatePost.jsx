@@ -17,7 +17,7 @@ const CreatePost = (props) => {
                      "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
 
     const [tags, setTags] = useState([]);
-    const [popupOpen, setPopupOpen] = useState(true);
+    const [popupOpen, setPopupOpen] = useState(false);
 
     /*
      * Returns the name if the user already set it up, or a default name otherwise
@@ -133,7 +133,7 @@ const CreatePost = (props) => {
                     <div className="create-post-select-bottom">
                         <div class="create-post-select-title">
                             <div>Select tags</div>
-                            <img src={plusButton}/>
+                            <img src={plusButton} onClick={()=> {setPopupOpen(true)}}/>
                         </div>
                         <div class="create-post-options-wrapper">
                             {selectedTags}

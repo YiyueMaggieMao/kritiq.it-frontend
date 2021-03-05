@@ -28,6 +28,7 @@
 
 .create-post-body {
     width: 100%;
+    min-height: 3rem;
     border: none;
     outline: none;
     font-family: "Rubik";
@@ -62,7 +63,7 @@
 }
 
 .create-post-select-bottom {
-    margin-top: 2vh;
+    margin-top: 8vh;
     margin-bottom: 2vh;
 }
 
