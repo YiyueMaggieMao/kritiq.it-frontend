@@ -2,16 +2,23 @@ import React, {useState} from 'react';
 
 import HeaderWithProfile from '../../components/HeaderWithProfile/HeaderWithProfile';
 import DesignCard from '../../components/DesignCard/DesignCard';
+import SearchBody from '../../components/SearchBody/SearchBody';
 import ExpandedPost from '../../components/ExpandedPost/ExpandedPost';
 import Navbar from '../../components/Navbar/Navbar';
 
 import posts from '../../data/posts.json';
 
+import searchIcon from '../../img/MagnifyingGlass.png';
+
 import './Home.css';
 
 const Home = (props) => {
-    const {userData} = props; // Contains name and url to profile picture
+    const {userData, showSearchBar} = props; // Contains name and url to profile picture
+
     const [postData, setPostData] = useState(posts);
+    const [searching, setSearching] = useState(false);
+    const [searchHistory, setSearchHistory] = useState([]);
+    const [filters, setFilters] = useState([]);
     const [expandedPostId, setExpandedPostId] = useState(-1);
 
     /* Expands a post based on id */
@@ -24,11 +31,41 @@ const Home = (props) => {
         setExpandedPostId(-1);
     }
 
-    /* Renders "Recent Posts" if currPage is 0, back button otherwise */
+    /* Handles key press event on search bar, specifically looking out for [Enter] */
+    const handleSearchBarKeyPress = (e) => {
+        if(e.key === "Enter"){
+            setSearchHistory([e.target.value, ...searchHistory]);
+            e.target.value="";
+        }
+    }
+
+    /* The search bar to be rendered */
+    const searchBar = (
+        <div className="search-bar-container" 
+            onClick={()=> {setSearching(true)}}
+            onKeyPress={handleSearchBarKeyPress}
+        >
+            <img src={searchIcon}/>
+            <input placeholder="Search Posts"/>
+        </div>
+    )
+
+    /* If searching: Show search bar
+     * If not searching: renders "Recent Posts" if currPage is 0, back button otherwise 
+     */
     const titleContent = () => {
-        return expandedPostId === -1 ?
-            (<span class="page-title-text">Recent Posts</span>) : 
-            (<span onClick={collapsePost}>Back</span>)
+        // Back button
+        if(expandedPostId !== -1) {
+            return <span onClick={collapsePost}>Back</span>;
+        }
+
+        // Search bar
+        else if(showSearchBar) {
+            return searchBar;
+        }
+
+        // Recent posts
+        return <span class="page-title-text">Recent Posts</span>; 
     }
 
     /* The list of design cards rendered from post data */
@@ -36,6 +73,16 @@ const Home = (props) => {
         return <DesignCard id={id} author={post.author} authorProfile={post.authorProfile} 
                 body={post.body} tags={post.tags} expandPost={expandPost}/>;
     })
+
+    /* The content of the search details */
+    const getSearchBody = () => {
+        return searching ? 
+        <SearchBody
+            setFilters ={setFilters}
+            searchHistory={searchHistory}
+        />: 
+        <div></div>
+    }
 
     /* The content of expanded post */
     const getExpandedPostViewer = () => {
@@ -68,6 +115,7 @@ const Home = (props) => {
                 <div className="page-body">
                     <div className="design-card-list">
                         {designCardList}
+                        {getSearchBody()}
                         {getExpandedPostViewer()}
                     </div>
                 </div>

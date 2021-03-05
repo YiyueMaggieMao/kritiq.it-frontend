@@ -21,12 +21,16 @@ const Navbar = () => {
         history.push("/create-post");
     }
 
+    const redirectToSearch = () => {
+        history.push("/search");
+    }
+
     /* Content rendering */
     return (
         <div className="bottom-nav">
             <span className="nav-button" onClick={redirectToHome}><img src={homeIcon}/></span>
             <span className="nav-button" onClick={redirectToCreate}><img src={createIcon}/></span>
-            <span className="nav-button"><img src={searchIcon}/></span>
+            <span className="nav-button" onClick={redirectToSearch}><img src={searchIcon}/></span>
         </div>
     )
 }

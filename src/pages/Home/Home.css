@@ -1,17 +1,38 @@
+.search-bar-container {
+    width: 86vw;
+    display: flex;
+    border-bottom: 1px solid #6C6C6C;
+}
+
+.search-bar-container img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 2vw;
+}
+
+.search-bar-container input {
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+}
+
 .design-card-list {
     z-index: 0;
 }
 
-.expanded-post-container {
+.search-body, .expanded-post-container {
     position: fixed;
     top: calc(5vh + 4rem);
-    width: 93vw;
-    height: calc(87vh - 4rem);
     background-color: #fff;
     z-index: 10;
     border: 2px solid #fff;
     border-top: none;
     border-bottom: none;
     transform: translateX(-7vw);
+}
+
+.expanded-post-container {
+    width: 93vw;
+    height: calc(87vh - 4rem);
     padding: 0 7vw;
 }

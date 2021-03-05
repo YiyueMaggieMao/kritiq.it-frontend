@@ -1,0 +1,16 @@
+.search-body {
+    padding-top: 2vh;
+    padding-left: 12vw;
+    padding-right: 7vw;
+    width: 85vw;
+    height: calc(85vh - 4rem);
+}
+
+#recent-searches-title {
+    color: #969696;
+    font-weight: 500;
+}
+
+#recent-searches-content div {
+    margin-top: 1vh;
+}

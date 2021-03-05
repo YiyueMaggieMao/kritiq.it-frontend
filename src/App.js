@@ -21,8 +21,8 @@ function App() {
           <Redirect from="/" to="/login" exact></Redirect>
           <Route path="/login" component={()=><Login setUserData={setUserData}/>}></Route>
           <Route path="/signup" component={()=><Signup setUserData={setUserData}/>}></Route>
-          <Route path="/home" component={()=><Home userData={userData}/>}>
-          </Route>
+          <Route path="/home" component={()=><Home userData={userData} showSearchBar={false} />}></Route>
+          <Route path="/search" component={()=><Home userData={userData} showSearchBar={true} />}></Route>
           <Route path="/profile" component={()=><Profile userData={userData}/>}></Route>
           <Route path="/edit-profile" 
             component={()=><EditProfile userData={userData} setUserData={setUserData}/>}>
