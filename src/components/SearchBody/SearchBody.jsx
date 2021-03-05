@@ -18,7 +18,6 @@ const SearchBody = (props) => {
         if(searchHistory.length > 5) {
             recentSearches = searchHistory.slice(0,5);
         }
-        else if(searchHistory.length == 0) {recentSearches = ["test1", "test2"]}
         return recentSearches.map((recentSearch) => {
             return <div>{recentSearch}</div>
         })

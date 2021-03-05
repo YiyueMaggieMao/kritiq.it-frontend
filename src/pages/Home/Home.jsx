@@ -16,6 +16,7 @@ const Home = (props) => {
     const {userData, showSearchBar} = props; // Contains name and url to profile picture
 
     const [postData, setPostData] = useState(posts);
+    const [filteredpostData, setFilteredPostData] = useState(postData);
     const [searching, setSearching] = useState(false);
     const [searchHistory, setSearchHistory] = useState([]);
     const [tags, setTags] = useState([]);
@@ -31,11 +32,31 @@ const Home = (props) => {
         setExpandedPostId(-1);
     }
 
+    /* Searches for posts that match the text and tags */
+    const searchForPost = (text, selectedTags) => {
+        const matchingPosts = postData.filter((data) => {
+            const textMatches = data.body.toUpperCase().includes(text.toUpperCase());
+            const filterMatches = false;
+            for ( let tagInd in selectedTags) {
+                let currSelectedTag = selectedTags[tagInd];
+                if(data.tags.includes(currSelectedTag)) {
+                    filterMatches = true;
+                    break;
+                }
+            }
+            return textMatches;
+        })
+        setFilteredPostData(matchingPosts);
+    }
+
     /* Handles key press event on search bar, specifically looking out for [Enter] */
     const handleSearchBarKeyPress = (e) => {
         if(e.key === "Enter"){
+            // Search
             setSearchHistory([e.target.value, ...searchHistory]);
+            searchForPost(e.target.value, tags);
             e.target.value="";
+            setTags([])
             setSearching(false);
         }
     }
@@ -70,8 +91,12 @@ const Home = (props) => {
     }
 
     /* The list of design cards rendered from post data */
-    const designCardList = postData.map((post, id) => {
-        return <DesignCard id={id} author={post.author} authorProfile={post.authorProfile} 
+    const designCardList = postData.map((post) => {
+        const showing = filteredpostData.some((data) => {
+            return data.id === post.id;
+        })
+        if(!showing) {return <div></div>;}
+        return <DesignCard id={post.id} author={post.author} authorProfile={post.authorProfile} 
                 body={post.body} tags={post.tags} expandPost={expandPost}/>;
     })
 

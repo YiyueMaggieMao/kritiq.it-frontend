@@ -1,5 +1,6 @@
 [
     {
+        "id": 0,
         "author": "Stanley Lee",
         "authorProfile": "stanley",
         "body": "just made something in PhotoShop! Let me know what yall think! Gonna need feedback on many things",
@@ -20,6 +21,7 @@
         ]
     },
     {
+        "id": 1,
         "author": "Jeffery Ha",
         "authorProfile": "jeff",
         "body": "used Figma for the first time!",
