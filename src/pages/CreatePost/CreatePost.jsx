@@ -3,6 +3,7 @@ import HeaderWithNav from '../../components/HeaderWithNav/HeaderWithNav';
 import Navbar from '../../components/Navbar/Navbar';
 
 import postPlaceholder from '../../img/post_placeholder.png';
+import plusButton from '../../img/plusButton.png';
 
 import './CreatePost.css';
 
@@ -103,7 +104,10 @@ const CreatePost = (props) => {
                         <img className="create-post-image" src={postPlaceholder}/>
                     </div>
                     <div className="create-post-select-bottom">
-                        <div class="create-post-select-title">Select tags</div>
+                        <div class="create-post-select-title">
+                            <div>Select tags</div>
+                            <img src={plusButton}/>
+                        </div>
                         <div class="create-post-options-wrapper">
                             {critiqueTagList}
                         </div>

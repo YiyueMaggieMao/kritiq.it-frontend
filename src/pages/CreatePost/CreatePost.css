@@ -39,8 +39,19 @@
 }
 
 .create-post-select-title {
+    display: flex;
     font-size: 1.5rem;
     margin-bottom: 2vh;
+}
+
+.create-post-select-title div {
+    padding-right: 10px;
+}
+
+.create-post-select-title img {
+    width: 1rem;
+    height: 1rem;
+    padding-top: 0.5rem;
 }
 
 .profile-pic {
@@ -51,7 +62,8 @@
 }
 
 .create-post-select-bottom {
-    margin-bottom: 15vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 .create-post-options-wrapper {
