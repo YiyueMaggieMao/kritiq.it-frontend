@@ -27,7 +27,7 @@ function App() {
           <Route path="/edit-profile" 
             component={()=><EditProfile userData={userData} setUserData={setUserData}/>}>
           </Route>
-          <Route path="/create-post" component={CreatePost}></Route>
+          <Route path="/create-post" component={()=> <CreatePost userData={userData}/>}></Route>
         </Switch>
       </div>
     </Router>
