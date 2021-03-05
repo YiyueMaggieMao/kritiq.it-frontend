@@ -15,45 +15,9 @@ const CreatePost = (props) => {
     const critiqueTags = ["Typography", "Wireframing", "Painting", "Poster Design", "Branding", "Sculpture",
                      "Drawing", "Character Concept Art", "Cartoon", "White Space", "Storyboarding", 
                      "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
-    const [selectedCritiqueTags, setSelectedCritiqueTags] = useState([]);
 
-    /* Critique types */
-    const critiqueTypes = ['Feedback', 'Just sharing'];
-    const [selectedCritiqueType, setSelectedCritiqueType] = useState(-1);
-
-    /* Determines the critique type style based on current selection */
-    const getCritiqueTypeClass = (ind) => {
-        console.log("In getCritiquetypeClass");
-        return selectedCritiqueType === ind ? "create-post-option-active": "create-post-option";
-    }
-
-    /* Renders a list of Critique types */
-    const critiqueTypeList = critiqueTypes.map((critiqueType, ind) => {
-        return <div className={getCritiqueTypeClass(ind)} 
-                    onClick={()=>{setSelectedCritiqueType(ind)}}>
-                        {critiqueType}
-                </div>
-    })
-
-    /* Adds or removes a tags to the current selections */
-    const toggleTagSelection = (ind) => {
-        // Add
-        if(!selectedCritiqueTags.includes(ind)) {
-            setSelectedCritiqueTags([...selectedCritiqueTags, ind]);
-        }
-        // Remove
-        else {
-            const updatedCritiqueTags = selectedCritiqueTags.filter((index) => {
-                return index !== ind;
-            });
-            setSelectedCritiqueTags(updatedCritiqueTags);
-        }
-    }
-
-    /* Determines the critique tag style based on current selections */
-    const getCritiqueTagClass = (ind) => {
-        return selectedCritiqueTags.includes(ind) ? "create-post-option-active": "create-post-option";
-    }
+    const [tags, setTags] = useState([]);
+    const [popupOpen, setPopupOpen] = useState(true);
 
     /*
      * Returns the name if the user already set it up, or a default name otherwise
@@ -71,10 +35,73 @@ const CreatePost = (props) => {
         <div className="profile-pic"></div>;
     }
 
+    /* Renders a list of selected tags */
+    const selectedTags = tags.map((tag) => {
+        return <div class="tag-active">{tag}</div>
+    })
+
+    /* The layer that filters the background */
+    const backdropFilter = (
+        <div class="create-backdrop-filter"></div>
+    );
+
+    /* Toggles tag selection */
+    const toggleSelection = (tag) => {
+        const tagInd = tags.indexOf(tag);
+        // Adds tag if tag was not selected
+        if(tagInd === -1) {
+            setTags([...tags, tag]);
+        } else {
+            // Removes tag if tag selected
+            const updatedTags = tags.filter((currTag) => {
+                return currTag !== tag;
+            })
+            setTags(updatedTags);
+        }
+
+    };
+
+    /* Returns the className of a tag based on selection status */
+    const getTagClassName = (tag) => {
+        if(tags.includes(tag)) {return "tag-active";}
+        return "tag";
+    };
+
+    /* The group of tags that shows up on add tags */
+    const allTagsDOM = critiqueTags.map((tag) => {
+        return (<div className={getTagClassName(tag)} 
+                    onClick={() => {toggleSelection(tag)}}>
+                    {tag}
+                </div>)
+    });
+
+    /* The popup containing filters */
+    const searchPopup = (
+            <div id="create-popup">
+                <div className="search-popup-header">
+                    <div className="search-popup-title">Add Tags</div>
+                    <div className="search-popup-close" onClick={()=>setPopupOpen(false)}>x</div>
+                </div>
+                <div className="tags-container">{allTagsDOM}</div>
+            </div>
+    );
+
+    /* Shows or hides the popup and backdrop depending on the state */
+    const getPopup = () => {
+        return popupOpen ? 
+            (
+                <div>
+                    {backdropFilter}
+                    {searchPopup}
+                </div>
+            ):
+            <div></div>
+    };
+
     /* Renders a list of critique tags */
     const critiqueTagList = critiqueTags.map((critiqueTag, ind) => {
-        return <div className={getCritiqueTagClass(ind)}
-                onClick={()=> toggleTagSelection(ind)}>
+        return <div className="tag"
+                onClick={()=> console.log("Yeet")}>
                     {critiqueTag}
                 </div>
     })
@@ -109,9 +136,10 @@ const CreatePost = (props) => {
                             <img src={plusButton}/>
                         </div>
                         <div class="create-post-options-wrapper">
-                            {critiqueTagList}
+                            {selectedTags}
                         </div>
                     </div>
+                    {getPopup()}
                 </div>
             </div>
             <Navbar/>
