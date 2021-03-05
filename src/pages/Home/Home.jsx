@@ -18,7 +18,7 @@ const Home = (props) => {
     const [postData, setPostData] = useState(posts);
     const [searching, setSearching] = useState(false);
     const [searchHistory, setSearchHistory] = useState([]);
-    const [filters, setFilters] = useState([]);
+    const [tags, setTags] = useState([]);
     const [expandedPostId, setExpandedPostId] = useState(-1);
 
     /* Expands a post based on id */
@@ -79,8 +79,8 @@ const Home = (props) => {
     const getSearchBody = () => {
         return searching ? 
         <SearchBody
-            filters={filters}
-            setFilters={setFilters}
+            tags={tags}
+            setTags={setTags}
             searchHistory={searchHistory}
         />: 
         <div></div>
