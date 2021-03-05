@@ -95,11 +95,7 @@ const EditProfile = (props) => {
             </div>
             <div className="user-info-edit">
                 <div className="large-profile-pic-wrapper">
-<<<<<<< HEAD
                     {getProfilePic()}
-=======
-                    <img className="large-profile-pic" src={userData.picture} />
->>>>>>> 9e070751f0e243695fee0dff34f0ae9b3881c270
                     <span className="edit-icon-wrapper"><img src={editIcon} /></span>
                 </div>
                 <table className="user-bio">
