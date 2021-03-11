@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import ReactGA from 'react-ga';
+
 import HeaderWithNav from '../../components/HeaderWithNav/HeaderWithNav';
 import Navbar from '../../components/Navbar/Navbar';
 
@@ -10,12 +12,16 @@ import './CreatePost.css';
 
 const CreatePost = (props) => {
 
-    const {userData} = props;
+    const { userData } = props;
+
+    /* Google Analytics stuff */
+    const trackingId = "UA-191938493-1";
+    ReactGA.initialize(trackingId);
 
     /* Tags */
     const critiqueTags = ["Typography", "Wireframing", "Painting", "Poster Design", "Branding", "Sculpture",
-                     "Drawing", "Character Concept Art", "Cartoon", "White Space", "Storyboarding", 
-                     "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
+        "Drawing", "Character Concept Art", "Cartoon", "White Space", "Storyboarding",
+        "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
 
     const [fileSelected, setFileSelected] = useState(false);
     const [tags, setTags] = useState([]);
@@ -25,35 +31,39 @@ const CreatePost = (props) => {
      * Returns the name if the user already set it up, or a default name otherwise
      */
     const getName = () => {
-        return userData.name? userData.name: "Unnamed User";
+        return userData.name ? userData.name : "Unnamed User";
     }
 
     /* Renders a placeholder div if the user hasn't set up a profile, 
      * and the actual profile picture if they did
      */
     const getProfilePic = () => {
-        return userData.picture?
-        <img className="profile-pic" src={userData.picture}/>:
-        <div className="profile-pic"></div>;
+        return userData.picture ?
+            <img className="profile-pic" src={userData.picture} /> :
+            <div className="profile-pic"></div>;
     }
 
     /* Clicks the hidden input button to upload the file*/
     const uploadFile = () => {
+        ReactGA.event({
+            "category": "Upload",
+            "action": "User clicked to upload a file"
+        })
         document.getElementById("create-post-file-upload-button").click();
     }
 
     /* Renders the upload thing when nothing uploaded, and a placeholder when a file has been chosen */
     const getFileUploadSection = () => {
-        return fileSelected ? 
-        <img className="create-post-image" src={postPlaceholder}/>:
-        <div className="create-post-file-upload" onClick={uploadFile}>
-            <input className="create-post-file-upload-button" 
-                id="create-post-file-upload-button" type="file" onChange={()=>setFileSelected(true)}/>
-            <img src={uploadIcon}/>
-            <div>
-                Upload File
+        return fileSelected ?
+            <img className="create-post-image" src={postPlaceholder} /> :
+            <div className="create-post-file-upload" onClick={uploadFile}>
+                <input className="create-post-file-upload-button"
+                    id="create-post-file-upload-button" type="file" onChange={() => setFileSelected(true)} />
+                <img src={uploadIcon} />
+                <div>
+                    Upload File
             </div>
-        </div>
+            </div>
     }
 
     /* Renders a list of selected tags */
@@ -70,7 +80,7 @@ const CreatePost = (props) => {
     const toggleSelection = (tag) => {
         const tagInd = tags.indexOf(tag);
         // Adds tag if tag was not selected
-        if(tagInd === -1) {
+        if (tagInd === -1) {
             setTags([...tags, tag]);
         } else {
             // Removes tag if tag selected
@@ -84,54 +94,54 @@ const CreatePost = (props) => {
 
     /* Returns the className of a tag based on selection status */
     const getTagClassName = (tag) => {
-        if(tags.includes(tag)) {return "tag-active";}
+        if (tags.includes(tag)) { return "tag-active"; }
         return "tag";
     };
 
     /* The group of tags that shows up on add tags */
     const allTagsDOM = critiqueTags.map((tag) => {
-        return (<div className={getTagClassName(tag)} 
-                    onClick={() => {toggleSelection(tag)}}>
-                    {tag}
-                </div>)
+        return (<div className={getTagClassName(tag)}
+            onClick={() => { toggleSelection(tag) }}>
+            {tag}
+        </div>)
     });
 
     /* The popup containing filters */
     const searchPopup = (
-            <div id="create-popup">
-                <div className="search-popup-header">
-                    <div className="search-popup-title">Add Tags</div>
-                    <div className="search-popup-close" onClick={()=>setPopupOpen(false)}>x</div>
-                </div>
-                <div className="tags-container">{allTagsDOM}</div>
+        <div id="create-popup">
+            <div className="search-popup-header">
+                <div className="search-popup-title">Add Tags</div>
+                <div className="search-popup-close" onClick={() => setPopupOpen(false)}>x</div>
             </div>
+            <div className="tags-container">{allTagsDOM}</div>
+        </div>
     );
 
     /* Shows or hides the popup and backdrop depending on the state */
     const getPopup = () => {
-        return popupOpen ? 
+        return popupOpen ?
             (
                 <div>
                     {backdropFilter}
                     {searchPopup}
                 </div>
-            ):
+            ) :
             <div></div>
     };
 
     /* Renders a list of critique tags */
     const critiqueTagList = critiqueTags.map((critiqueTag, ind) => {
         return <div className="tag"
-                onClick={()=> console.log("Yeet")}>
-                    {critiqueTag}
-                </div>
+            onClick={() => console.log("Yeet")}>
+            {critiqueTag}
+        </div>
     })
 
     /* Renders the content */
     return (
         <div>
             <div className="page-content">
-                <HeaderWithNav/>
+                <HeaderWithNav />
                 <div className="page-body create-post">
                     <div className="create-post-select-top">
                         {/* Name, profile pic, type of post */}
@@ -154,7 +164,7 @@ const CreatePost = (props) => {
                     <div className="create-post-select-bottom">
                         <div class="create-post-select-title">
                             <div>Select tags</div>
-                            <img src={plusButton} onClick={()=> {setPopupOpen(true)}}/>
+                            <img src={plusButton} onClick={() => { setPopupOpen(true) }} />
                         </div>
                         <div class="create-post-options-wrapper">
                             {selectedTags}
@@ -163,7 +173,7 @@ const CreatePost = (props) => {
                     {getPopup()}
                 </div>
             </div>
-            <Navbar/>
+            <Navbar />
         </div>
     )
 }

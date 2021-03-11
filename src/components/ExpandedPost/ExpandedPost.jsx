@@ -1,4 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
+import ReactGA from 'react-ga';
+
 import Critique from '../Critique/Critique';
 import ExpandedImageLayer from '../ExpandedImageLayer/ExpandedImageLayer';
 
@@ -9,12 +11,16 @@ import './ExpandedPost.css';
 
 
 const ExpandedPost = (props) => {
-    const {userData, postId, author, authorProfile, body, tags, comments, 
-           postData, setPostData, setExpandedPostId} = props;
+    const { userData, postId, author, authorProfile, body, tags, comments,
+        postData, setPostData, setExpandedPostId } = props;
     const [currentComments, setCurrentComments] = useState(comments);
     const [imageExpanded, setImageExpanded] = useState(false);
 
     const scrollSection = useRef(null);
+
+    /* Google Analytics stuff */
+    const trackingId = "UA-191938493-1";
+    ReactGA.initialize(trackingId);
 
     /* Returns the profile pic based on authorProfile */
     const getProfilePic = () => {
@@ -25,10 +31,10 @@ const ExpandedPost = (props) => {
     const getTagString = () => {
         const numTags = tags.length;
         let tagString = "";
-        for(let tagInd = 0; tagInd < numTags; tagInd++) {
+        for (let tagInd = 0; tagInd < numTags; tagInd++) {
             const currTag = tags[tagInd];
             tagString = tagString + "#" + currTag;
-            if(tagInd != numTags - 1) {tagString += " ";} 
+            if (tagInd != numTags - 1) { tagString += " "; }
         }
         return tagString;
     }
@@ -36,23 +42,28 @@ const ExpandedPost = (props) => {
     /* Render a list of comments */
     const commentList = currentComments.map((comment) => {
         const authorPicture = comment.authorPicture ? comment.authorPicture : "";
-        return <Critique author={comment.author} authorPicture={authorPicture} body={comment.body}/>
+        return <Critique author={comment.author} authorPicture={authorPicture} body={comment.body} />
     })
 
     /* Returns a placeholder name if the user is unnamed, or the username if they have one */
     const getAuthorName = () => {
-        return userData.name? userData.name : "Unnamed User";
+        return userData.name ? userData.name : "Unnamed User";
     }
 
     /* When enter key pressed, submit a new comment */
     const addComment = (comment, postId) => {
-        const addedComment = {"author": getAuthorName(), "authorPicture":userData.picture, "body": comment}
+        ReactGA.event({
+            "category": "Submit",
+            "action": "User submitted a new comment"
+        })
+        // Gets data from user input
+        const addedComment = { "author": getAuthorName(), "authorPicture": userData.picture, "body": comment }
         const updatedPostData = [];
         const numPosts = postData.length;
         // Updates the post data with the new comment
         let currId;
-        for(currId = 0; currId < numPosts; currId++) {
-            if(currId !== postId) {
+        for (currId = 0; currId < numPosts; currId++) {
+            if (currId !== postId) {
                 updatedPostData.push(postData[currId]);
             } else { // Update the specific post
                 const postToUpdate = postData[currId];
@@ -71,33 +82,41 @@ const ExpandedPost = (props) => {
         }
         setPostData(updatedPostData);
     }
-    
+
     /* Hanles the keyPress event on the comment input */
     const handleCommentKeyPress = (e) => {
-        if(e.key === "Enter") {
+        if (e.key === "Enter") {
             addComment(e.target.value, postId);
             e.target.value = "";
-            scrollSection.current.scrollTo({top: 0, behavior:'smooth'});
+            scrollSection.current.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
     /* Expands the image when clicked */
     const expandImage = () => {
+        ReactGA.event({
+            "category": "View",
+            "action": "User expanded an image"
+        })
         setImageExpanded(true);
     }
 
     /* Collapses the image when closed */
     const collapseImage = () => {
+        ReactGA.event({
+            "category": "Collapse",
+            "action": "User collapsed an image"
+        })
         setImageExpanded(false);
     }
 
     /* Renders the expanded image, if the image is currently expanded */
     const getExpandedImageLayer = () => {
-        return imageExpanded ? <ExpandedImageLayer collapseImage={collapseImage}/> : <div></div>
+        return imageExpanded ? <ExpandedImageLayer collapseImage={collapseImage} /> : <div></div>
     }
 
     /* Return the content... Oh it's gonna be so long */
-    return(
+    return (
         <div className="expanded-post">
             {/* The scrollable section (post + comments)*/}
             <div className="expanded-post-scrollable" ref={scrollSection}>
@@ -110,7 +129,7 @@ const ExpandedPost = (props) => {
                         <div className="design-card-content-top design-card-content-top-expanded">
                             <div className="design-card-profile-wrapper">
                                 <div className="design-card-profile">
-                                    <img src={getProfilePic()}/>
+                                    <img src={getProfilePic()} />
                                 </div>
                             </div>
                             <div>
@@ -129,7 +148,7 @@ const ExpandedPost = (props) => {
             </div>
 
             {/* Add a comment (fixed at bottom) */}
-            <input className="add-comment" placeholder="Add a comment" onKeyPress={handleCommentKeyPress}/>
+            <input className="add-comment" placeholder="Add a comment" onKeyPress={handleCommentKeyPress} />
             {getExpandedImageLayer()}
         </div>
     );

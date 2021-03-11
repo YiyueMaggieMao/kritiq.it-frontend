@@ -1,6 +1,7 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import usernameIcon from '../../img/Username.svg';
@@ -9,24 +10,39 @@ import passwordIcon from '../../img/Password.svg';
 import './Login.css';
 
 const Login = (props) => {
-  const {setUserData} = props;
+  const { setUserData } = props;
   let history = useHistory();
+
+  /* Google Analytics stuff */
+  const trackingId = "UA-191938493-1";
+  ReactGA.initialize(trackingId);
 
   /* Redirects to home page upon successful login */
   const redirectToHome = () => {
+    ReactGA.event({
+      category: "Log in",
+      action: "User did Wizard of Oz Login"
+    })
     history.push("/home");
   };
 
   /* Redirects to sign up upon clicking the sign up text */
   const redirectToSignup = () => {
+    ReactGA.event({
+      category: "Redirect",
+      action: "User redirected to Signup from Login"
+    })
     history.push("/signup");
   }
 
   /* Callback for Facebook Login */
   const loginWithFacebook = (response) => {
-    console.log(response);
-    setUserData({"name": response.name, "picture": response.picture.data.url});
-    redirectToHome(); 
+    ReactGA.event({
+      category: "Redirect",
+      action: "User used Facebook Login"
+    })
+    setUserData({ "name": response.name, "picture": response.picture.data.url });
+    redirectToHome();
   }
 
   /* Renders the actual content */

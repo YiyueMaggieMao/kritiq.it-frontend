@@ -1,18 +1,32 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
+
 import './Profile.css';
 
 const Profile = (props) => {
     const { userData } = props;
     const history = useHistory();
 
+    /* Google Analytics stuff */
+    const trackingId = "UA-191938493-1";
+    ReactGA.initialize(trackingId);
+
     /* Redirects to home page upon closing profile */
     const redirectToHome = () => {
+        ReactGA.event({
+            "category": "Redirect",
+            "action": "User redirected to Home from Profile page"
+        })
         history.push("/home");
     }
 
     /* Redirects to edit page upon clicking edit */
     const redirectToEdit = () => {
+        ReactGA.event({
+            "category": "Redirect",
+            "action": "User redirected to Edit Profile from Profile page"
+        })
         history.push("/edit-profile");
     }
 

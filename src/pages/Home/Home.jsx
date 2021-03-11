@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import ReactGA from 'react-ga';
 
 import HeaderWithProfile from '../../components/HeaderWithProfile/HeaderWithProfile';
 import DesignCard from '../../components/DesignCard/DesignCard';
@@ -22,18 +23,36 @@ const Home = (props) => {
     const [tags, setTags] = useState([]);
     const [expandedPostId, setExpandedPostId] = useState(-1);
 
+    /* Google Analytics stuff */
+    const trackingId = "UA-191938493-1";
+    ReactGA.initialize(trackingId);
+
     /* Expands a post based on id */
     const expandPost = (id) => {
+        const actionString = "User expanded post " + id;
+        ReactGA.event({
+            category: "View",
+            action: actionString
+        })
         setExpandedPostId(id);
     }
 
     /* Closes the expanded post and goes back to the post list */
     const collapsePost = () => {
+        ReactGA.event({
+            category: "Collapse",
+            action: "User collapsed the post"
+        })
         setExpandedPostId(-1);
     }
 
     /* Searches for posts that match the text and tags */
     const searchForPost = (text, selectedTags) => {
+        const actionString = "User searched for content: " + text + " with " + selectedTags.length + " tags";
+        ReactGA.event({
+            category: "Search",
+            action: actionString
+        })
         const matchingPosts = postData.filter((data) => {
             const textMatches = data.body.toUpperCase().includes(text.toUpperCase());
             const filterMatches = false;

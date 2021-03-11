@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import usernameIcon from '../../img/Username.svg';
@@ -9,14 +10,26 @@ const Signup = () => {
 
     let history = useHistory();
 
+    /* Google Analytics stuff */
+    const trackingId = "UA-191938493-1";
+    ReactGA.initialize(trackingId);
+
     /* Redirects to home upon successful signup */
     const redirectToHome = () => {
+        ReactGA.event({
+            "category": "Redirect",
+            "action": "User redirected from Signup to Home"
+        })
         history.push("/home");
     }
 
     /* Redirects to Login page upon clicking the login text */
     const redirectToLogin = () => {
-        history.push("/login") ;       
+        ReactGA.event({
+            "category": "Redirect",
+            "action": "User redirected from Signup to Login"
+        })
+        history.push("/login");
     }
 
     /* Renders page content */

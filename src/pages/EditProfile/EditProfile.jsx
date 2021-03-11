@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
+
 import './EditProfile.css';
 import editIcon from '../../img/edit.png';
 
@@ -9,19 +11,23 @@ const EditProfile = (props) => {
 
     const [saveButtonClassName, setSaveButtonClassName] = useState("page-header-edit");
 
+    /* Google Analytics stuff */
+    const trackingId = "UA-191938493-1";
+    ReactGA.initialize(trackingId);
+
     /* 
      * Splits user's name into first and last
      * Returns array with format [firstName, lastName]
      */
     const getFirstAndLastName = () => {
         // If user hasn't set a name yet, return an empty array 
-        if(!userData.name){
-            return ["",""];
+        if (!userData.name) {
+            return ["", ""];
         }
         // Otherwise, split the name by the last space index
         const lastSpaceIndex = userData.name.lastIndexOf(' ');
         // If no space, return the whole name as first name and nothing as last
-        if(lastSpaceIndex === -1) {
+        if (lastSpaceIndex === -1) {
             return [userData.name, ""];
         }
         // If a space is present, return first and last name
@@ -38,9 +44,9 @@ const EditProfile = (props) => {
      * and the actual profile picture if they did
      */
     const getProfilePic = () => {
-        return userData.picture?
-        <img className="large-profile-pic" src={userData.picture}/>:
-        <div className="large-profile-pic large-profile-pic-div"></div>;
+        return userData.picture ?
+            <img className="large-profile-pic" src={userData.picture} /> :
+            <div className="large-profile-pic large-profile-pic-div"></div>;
     }
 
     /*
@@ -74,11 +80,27 @@ const EditProfile = (props) => {
 
     /* Redirects to profile page on page closed */
     const redirectToProfile = () => {
+        ReactGA.event({
+            "category": "Cancel",
+            "action": "User canceled editing profile"
+        })
+        ReactGA.event({
+            "category": "Redirect",
+            "action": "User redirected from EditProfile to Profile"
+        })
         history.push("/profile");
     }
 
     /* Saves info, then redirects to profile */
     const saveAndRedirectToProfile = () => {
+        ReactGA.event({
+            "category": "Submit",
+            "action": "User saved changes to profile"
+        })
+        ReactGA.event({
+            "category": "Redirect",
+            "action": "User redirected from EditProfile to Profile"
+        })
         const name = firstName + " " + lastName;
         setUserData({ name: name, picture: userData.picture, bio: bio });
         redirectToProfile();
