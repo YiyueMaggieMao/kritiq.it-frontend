@@ -1,5 +1,6 @@
 .page-body.create-post {
     padding-left: 5vw;
+    width: 86vw;
     overflow-x: hidden;
 }
 
@@ -32,6 +33,19 @@
     border: none;
     outline: none;
     font-family: "Rubik";
+}
+
+.create-post-file-upload {
+    width: calc(100% - 2px);
+    padding: 10vh 0;
+    border: 1px dotted #e5e5e5;
+    text-align: center;
+    font-size: 1rem;
+    color: #565656;
+}
+
+.create-post-file-upload-button {
+    display: none;
 }
 
 .create-post-image {

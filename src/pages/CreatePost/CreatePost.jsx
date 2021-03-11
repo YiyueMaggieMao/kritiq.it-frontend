@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import postPlaceholder from '../../img/post_placeholder.png';
 import plusButton from '../../img/plusButton.png';
+import uploadIcon from '../../img/UploadSimple.png';
 
 import './CreatePost.css';
 
@@ -16,6 +17,7 @@ const CreatePost = (props) => {
                      "Drawing", "Character Concept Art", "Cartoon", "White Space", "Storyboarding", 
                      "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
 
+    const [fileSelected, setFileSelected] = useState(false);
     const [tags, setTags] = useState([]);
     const [popupOpen, setPopupOpen] = useState(false);
 
@@ -33,6 +35,25 @@ const CreatePost = (props) => {
         return userData.picture?
         <img className="profile-pic" src={userData.picture}/>:
         <div className="profile-pic"></div>;
+    }
+
+    /* Clicks the hidden input button to upload the file*/
+    const uploadFile = () => {
+        document.getElementById("create-post-file-upload-button").click();
+    }
+
+    /* Renders the upload thing when nothing uploaded, and a placeholder when a file has been chosen */
+    const getFileUploadSection = () => {
+        return fileSelected ? 
+        <img className="create-post-image" src={postPlaceholder}/>:
+        <div className="create-post-file-upload" onClick={uploadFile}>
+            <input className="create-post-file-upload-button" 
+                id="create-post-file-upload-button" type="file" onChange={()=>setFileSelected(true)}/>
+            <img src={uploadIcon}/>
+            <div>
+                Upload File
+            </div>
+        </div>
     }
 
     /* Renders a list of selected tags */
@@ -128,7 +149,7 @@ const CreatePost = (props) => {
                         </div>
                         {/* Post body and picture */}
                         <textarea className="create-post-body" placeholder="Give your post a descirption!"></textarea>
-                        <img className="create-post-image" src={postPlaceholder}/>
+                        {getFileUploadSection()}
                     </div>
                     <div className="create-post-select-bottom">
                         <div class="create-post-select-title">

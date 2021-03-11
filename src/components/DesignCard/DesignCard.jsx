@@ -1,5 +1,6 @@
 import React from 'react';
 import './DesignCard.css';
+import postPlaceholder from '../../img/post_placeholder.png';
 import stanley from '../../img/stanley.png';
 import jeff from '../../img/jeff.png';
 
@@ -31,7 +32,7 @@ const DesginCard = (props) => {
     /* Renders the content */
     return (
         <div className="design-card" onClick={handleDesignCardClick}>
-            <div className="design-card-cover"></div>
+            <img className="design-card-cover" src={postPlaceholder}/>
             <div className="design-card-content">
                 {/* Author profile, author name, post body */}
                 <div className="design-card-content-top">
