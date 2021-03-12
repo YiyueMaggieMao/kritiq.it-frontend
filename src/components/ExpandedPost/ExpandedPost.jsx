@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import {Toast} from 'antd-mobile';
 import ReactGA from 'react-ga';
 
 import Critique from '../Critique/Critique';
@@ -80,6 +81,7 @@ const ExpandedPost = (props) => {
                 updatedPostData.push(updatedPost);
             }
         }
+        Toast.success("Comment Added!", 1);
         setPostData(updatedPostData);
     }
 

@@ -4,7 +4,8 @@ import ReactGA from 'react-ga';
 
 // No specific CSS for this file, check App.js for all header styles
 
-const HeaderWithNav = () => {
+const HeaderWithNav = (props) => {
+    const {showPostSuccess} = props;
     let history = useHistory();
 
     /* Google Analytics stuff */
@@ -14,9 +15,10 @@ const HeaderWithNav = () => {
     /* Redirects to homepage when canceled */
     const goBackHome = () => {
         ReactGA.event({
-            "category": "Cancel",
-            "action": "User canceled creating a new post"
+            "category": "Submit",
+            "action": "User created a new post"
         })
+        showPostSuccess();
         history.push("/home");
     }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import {Toast} from 'antd-mobile';
 import ReactGA from 'react-ga';
 
 import './EditProfile.css';
@@ -88,6 +89,7 @@ const EditProfile = (props) => {
             "category": "Redirect",
             "action": "User redirected from EditProfile to Profile"
         })
+        Toast.success("Successfully saved profile", 1);
         history.push("/profile");
     }
 

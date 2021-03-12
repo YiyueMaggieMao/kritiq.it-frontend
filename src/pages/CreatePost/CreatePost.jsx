@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Toast} from 'antd-mobile';
 import ReactGA from 'react-ga';
 
 import HeaderWithNav from '../../components/HeaderWithNav/HeaderWithNav';
@@ -9,6 +10,7 @@ import plusButton from '../../img/plusButton.png';
 import uploadIcon from '../../img/UploadSimple.png';
 
 import './CreatePost.css';
+import '../../antd-mobile.min.css';
 
 const CreatePost = (props) => {
 
@@ -117,6 +119,11 @@ const CreatePost = (props) => {
         </div>
     );
 
+    /* Shows a Toast message indicating post success */
+    const showPostSuccess = () => {
+        Toast.success("Successfully created post!", 1);
+    }
+
     /* Shows or hides the popup and backdrop depending on the state */
     const getPopup = () => {
         return popupOpen ?
@@ -141,7 +148,7 @@ const CreatePost = (props) => {
     return (
         <div>
             <div className="page-content">
-                <HeaderWithNav />
+                <HeaderWithNav showPostSuccess={showPostSuccess} />
                 <div className="page-body create-post">
                     <div className="create-post-select-top">
                         {/* Name, profile pic, type of post */}
