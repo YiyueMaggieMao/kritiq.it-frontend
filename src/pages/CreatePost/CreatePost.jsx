@@ -165,7 +165,7 @@ const CreatePost = (props) => {
                             </div>
                         </div>
                         {/* Post body and picture */}
-                        <textarea className="create-post-body" placeholder="Give your post a descirption!"></textarea>
+                        <textarea className="create-post-body" placeholder="Give your post a description!"></textarea>
                         {getFileUploadSection()}
                     </div>
                     <div className="create-post-select-bottom">
