@@ -41,8 +41,11 @@ const Login = (props) => {
       category: "Redirect",
       action: "User used Facebook Login"
     })
-    setUserData({ "name": response.name, "picture": response.picture.data.url });
-    redirectToHome();
+    // Only redirect on successful authentication
+    if(response.name && response.picture){
+      setUserData({ "name": response.name, "picture": response.picture.data.url });
+      redirectToHome();
+    }
   }
 
   /* Renders the actual content */
