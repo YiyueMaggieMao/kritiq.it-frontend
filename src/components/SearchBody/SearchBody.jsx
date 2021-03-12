@@ -3,7 +3,7 @@ import plusButton from '../../img/plusButton.png';
 import './SearchBody.css';
 
 const SearchBody = (props) => {
-    const {tags, setTags, searchHistory} = props;
+    const {tags, setTags, searchHistory, searchForPost} = props;
     const [popupOpen, setPopupOpen] = useState(false);
 
     // List of all possible tags
@@ -19,7 +19,7 @@ const SearchBody = (props) => {
             recentSearches = searchHistory.slice(0,5);
         }
         return recentSearches.map((recentSearch) => {
-            return <div>{recentSearch}</div>
+            return <div onClick={() => searchForPost(recentSearch, [])}>{recentSearch}</div>
         })
     }
 

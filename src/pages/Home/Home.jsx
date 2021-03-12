@@ -66,6 +66,7 @@ const Home = (props) => {
             return textMatches;
         })
         setFilteredPostData(matchingPosts);
+        setSearching(false);
     }
 
     /* Handles key press event on search bar, specifically looking out for [Enter] */
@@ -76,7 +77,6 @@ const Home = (props) => {
             searchForPost(e.target.value, tags);
             e.target.value="";
             setTags([])
-            setSearching(false);
         }
     }
 
@@ -126,6 +126,7 @@ const Home = (props) => {
             tags={tags}
             setTags={setTags}
             searchHistory={searchHistory}
+            searchForPost={searchForPost}
         />: 
         <div></div>
     }
