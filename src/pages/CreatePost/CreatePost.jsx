@@ -26,6 +26,7 @@ const CreatePost = (props) => {
         "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
 
     const [fileSelected, setFileSelected] = useState(false);
+    const [file, setFile] = useState(postPlaceholder);
     const [tags, setTags] = useState([]);
     const [popupOpen, setPopupOpen] = useState(false);
 
@@ -45,6 +46,21 @@ const CreatePost = (props) => {
             <div className="profile-pic"></div>;
     }
 
+    /* Updates the file and sets fileSelected to true */
+    const handleFileChange = (e) => {
+        console.log("In handleFileChange");
+        e.preventDefault();
+        
+        let fileReader = new FileReader();
+        let file = e.target.files[0];
+        fileReader.onloadend = () => {
+            console.log(fileReader.result);
+            setFile(fileReader.result);
+            setFileSelected(true);
+        }
+        fileReader.readAsDataURL(file);
+    }
+
     /* Clicks the hidden input button to upload the file*/
     const uploadFile = () => {
         ReactGA.event({
@@ -57,10 +73,10 @@ const CreatePost = (props) => {
     /* Renders the upload thing when nothing uploaded, and a placeholder when a file has been chosen */
     const getFileUploadSection = () => {
         return fileSelected ?
-            <img className="create-post-image" src={postPlaceholder} /> :
+            <img className="create-post-image" src={file} /> :
             <div className="create-post-file-upload" onClick={uploadFile}>
                 <input className="create-post-file-upload-button"
-                    id="create-post-file-upload-button" type="file" onChange={() => setFileSelected(true)} />
+                    id="create-post-file-upload-button" type="file" accept="image/*" onChange={handleFileChange} />
                 <img src={uploadIcon} />
                 <div>
                     Upload File
