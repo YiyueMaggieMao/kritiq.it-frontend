@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactGA from 'react-ga';
 
 import HeaderWithProfile from '../../components/HeaderWithProfile/HeaderWithProfile';
@@ -14,7 +14,7 @@ import searchIcon from '../../img/MagnifyingGlass.png';
 import './Home.css';
 
 const Home = (props) => {
-    const {userData, showSearchBar} = props; // Contains name and url to profile picture
+    const {userData, showSearchBar, addedPost} = props; // Contains name and url to profile picture
 
     const [postData, setPostData] = useState(posts);
     const [filteredpostData, setFilteredPostData] = useState(postData);
@@ -26,6 +26,21 @@ const Home = (props) => {
     /* Google Analytics stuff */
     const trackingId = "UA-191938493-1";
     ReactGA.initialize(trackingId);
+
+    /* Adds a dummy post to the post data for later expansion */
+    useEffect(() => {
+        const dummyPostJSON = {
+            postId: 2,
+            author: "Jeffrey Ha",
+            authorProfile: "jeff",
+            body: "Just created a kritiq.it account and thought I'd share something. Here's to Wizard of Oz!",
+            tags: ["Branding", "Storyboarding"],
+            comments:[]
+        }
+        const postDataWithDummy = [...postData, dummyPostJSON];
+        setPostData(postDataWithDummy);
+        setFilteredPostData(postDataWithDummy);
+    }, [])
 
     /* Expands a post based on id */
     const expandPost = (id) => {
@@ -55,7 +70,7 @@ const Home = (props) => {
         })
         const matchingPosts = postData.filter((data) => {
             const textMatches = data.body.toUpperCase().includes(text.toUpperCase());
-            const filterMatches = false;
+            let filterMatches = false;
             for ( let tagInd in selectedTags) {
                 let currSelectedTag = selectedTags[tagInd];
                 if(data.tags.includes(currSelectedTag)) {
@@ -112,6 +127,11 @@ const Home = (props) => {
     /* The list of design cards rendered from post data */
     const designCardList = postData.map((post) => {
         const showing = filteredpostData.some((data) => {
+            // Only show dummy post when post button clicked
+            if(post.postId == 2) {
+                return addedPost && data.postId === post.postId;
+            }
+            // The posts also need to match the filters to show
             return data.postId === post.postId;
         })
         if(!showing) {return <div></div>;}
@@ -162,6 +182,7 @@ const Home = (props) => {
                 <div className="page-body">
                     <div className="design-card-list">
                         {designCardList}
+                        {/* {dummyPost} */}
                         {getSearchBody()}
                         {getExpandedPostViewer()}
                     </div>

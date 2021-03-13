@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 // No specific CSS for this file, check App.js for all header styles
 
 const HeaderWithNav = (props) => {
-    const {showPostSuccess} = props;
+    const {showPostSuccess, setAddedPost} = props;
     let history = useHistory();
 
     /* Google Analytics stuff */
@@ -20,6 +20,7 @@ const HeaderWithNav = (props) => {
         })
         showPostSuccess();
         history.push("/home");
+        setAddedPost(true);
     }
 
     return (

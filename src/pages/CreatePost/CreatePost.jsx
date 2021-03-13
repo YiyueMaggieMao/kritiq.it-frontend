@@ -14,7 +14,7 @@ import '../../antd-mobile.min.css';
 
 const CreatePost = (props) => {
 
-    const { userData } = props;
+    const { userData, setAddedPost } = props;
 
     /* Google Analytics stuff */
     const trackingId = "UA-191938493-1";
@@ -80,7 +80,7 @@ const CreatePost = (props) => {
                 <img src={uploadIcon} />
                 <div>
                     Upload File
-            </div>
+                </div>
             </div>
     }
 
@@ -164,7 +164,7 @@ const CreatePost = (props) => {
     return (
         <div>
             <div className="page-content">
-                <HeaderWithNav showPostSuccess={showPostSuccess} />
+                <HeaderWithNav showPostSuccess={showPostSuccess} setAddedPost={setAddedPost}/>
                 <div className="page-body create-post">
                     <div className="create-post-select-top">
                         {/* Name, profile pic, type of post */}
