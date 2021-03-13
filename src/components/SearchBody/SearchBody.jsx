@@ -8,7 +8,7 @@ const SearchBody = (props) => {
 
     // List of all possible tags
     const allTags = ["Typography", "Wireframing", "Painting", "Poster Design", "Branding", "Sculpture",
-                     "Drawing", "Character Concept Art", "Cartoon", "White Space", "Storyboarding", 
+                     "Drawing", "Character Concept Art", "Cartoon", "Storyboarding", 
                      "Motion Graphics", "Environment Design", "Photoshop", "Composition", "Illustrator", "White Space"];
 
     /* The list of recent searches */

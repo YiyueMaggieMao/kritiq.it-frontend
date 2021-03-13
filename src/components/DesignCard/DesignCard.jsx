@@ -22,7 +22,8 @@ const DesginCard = (props) => {
         const numTags = tags.length;
         let tagString = "";
         for(let tagInd = 0; tagInd < numTags; tagInd++) {
-            const currTag = tags[tagInd];
+            let currTag = tags[tagInd].toLowerCase();
+            currTag = currTag.replace(/\s/g, '');
             tagString = tagString + "#" + currTag;
             if(tagInd != numTags - 1) {tagString += " ";} 
         }

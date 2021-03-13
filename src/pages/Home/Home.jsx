@@ -70,7 +70,7 @@ const Home = (props) => {
         })
         const matchingPosts = postData.filter((data) => {
             const textMatches = data.body.toUpperCase().includes(text.toUpperCase());
-            let filterMatches = false;
+            let filterMatches = selectedTags.length == 0; // Defaults to true if no tags selected
             for ( let tagInd in selectedTags) {
                 let currSelectedTag = selectedTags[tagInd];
                 if(data.tags.includes(currSelectedTag)) {
@@ -78,7 +78,7 @@ const Home = (props) => {
                     break;
                 }
             }
-            return textMatches;
+            return textMatches && filterMatches;
         })
         setFilteredPostData(matchingPosts);
         setSearching(false);
